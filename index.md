@@ -27,6 +27,7 @@ A dedicated app for practicing the grammar of the language was created.
  - [ ] adding native script when it is ready
  
  ## Memorising roots, affixes and grammar
+ 
  ### Find relations
  For simple memorization of roots and affixes, I recommend using mnemonics,
   which mean actually using any kind of visual rational wiring of two or
