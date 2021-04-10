@@ -39,7 +39,9 @@ A dedicated app for practicing the grammar of the language was created.
  #### Grammar
  Thanks to updating the language to became more regular, it became much
   easier to memorize grammar by finding relations inside it. For example,
+  
  ![Standard vowel-form sequence](https://i.ibb.co/jvfCtp8/Screenshot-from-2021-04-10-13-13-44.png)
+ 
  - if you can notice in the first series every letter is followed by the
   latter with two dots on top of it. More than that it is followed by
    a similar letter in most cases. Also, the pattern flips in the middle
@@ -75,14 +77,18 @@ A dedicated app for practicing the grammar of the language was created.
    
    In one card I recommend include a root with stems altogether. Something
    like this:
+   
   ![root](https://i.ibb.co/FbvT7Qs/Screenshot-from-2021-04-10-13-52-43.png)
+  
   With only one side of the card - translating from Ithkuil to English.
     All the stems have relations by default, so it is probably not
      necessary to make cards for different stems, if you remind one,
       you probably remind all the others.
   
   For affixes, if affix contains gradation like -kţ:
+  
   ![affix](https://i.ibb.co/M6y1x38/Screenshot-from-2021-04-10-13-55-45.png)
+  
   You need only include 3 forms in the card: 1, 5, 9 since all the others
   are in between those main forms. With others, it can be more complicated
   but with using tools demonstrated here you probably will be able to find
