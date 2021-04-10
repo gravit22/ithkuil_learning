@@ -17,6 +17,17 @@ pub struct TemplateApp {
     options: Vec<Vec<&'static str>>,
 }
 
+#[derive(PartialEq, Eq, Hash, Clone)]
+enum Menu {
+    Main,
+    WritingPractice,
+    Slot2,
+    Slot4,
+    Slot6,
+    ReferentialCase,
+    Slot9IEV,
+}
+
 impl Default for TemplateApp {
     fn default() -> Self {
         Self {
@@ -50,8 +61,6 @@ impl epi::App for TemplateApp {
         epi::set_value(storage, epi::APP_KEY, self);
     }
 
-    /// Called each time the UI needs repainting, which may be many times per second.
-    /// Put your widgets into a `SidePanel`, `TopPanel`, `CentralPanel`, `Window` or `Area`.
     fn update(&mut self, ctx: &egui::CtxRef, frame: &mut epi::Frame<'_>) {
 
         // Side panel where you chose practice
@@ -233,15 +242,4 @@ impl epi::App for TemplateApp {
             });
         }
     }
-}
-
-#[derive(PartialEq, Eq, Hash, Clone)]
-enum Menu {
-    Main,
-    WritingPractice,
-    Slot2,
-    Slot4,
-    Slot6,
-    ReferentialCase,
-    Slot9IEV,
 }
