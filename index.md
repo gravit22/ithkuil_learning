@@ -1,8 +1,3 @@
----
-layout: Instructions
-title: Learning as fast as possible
----
-
 # Guide for learning Itkuil
 
 ## Learning grammar with special app
