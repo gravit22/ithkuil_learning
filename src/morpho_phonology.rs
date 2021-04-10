@@ -154,9 +154,10 @@ pub enum Affiliation {
 #[derive(PartialEq, Eq, Hash, Clone)]
 pub enum Perspective {
     Monadic,
-    Polyadic,
+    Agglomerative,
     Nomic,
     Abstract,
+    Polyadic,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
@@ -170,8 +171,8 @@ pub enum Transrelative {
     Thematic,
     Instrumental,
     Absolutive,
-    Stimulative,
     Affective,
+    Stimulative,
     Effectuative,
     Ergative,
     Dative,
@@ -294,8 +295,8 @@ pub enum Expectation {
 pub enum Validation {
     Observational,
     Recollective,
-    Reportive,
     Purportive,
+    Reportive,
     Imaginary,
     Conventional,
     Intuitive,
@@ -377,28 +378,28 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Context(Context::Functional)], "eu");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Representational)], "ia/oä");
+                        Morpheme::Context(Context::Representational)], "ia/uä");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Representational)], "iä/uä");
+                        Morpheme::Context(Context::Representational)], "ie/uë");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Representational)], "ie/oë");
+                        Morpheme::Context(Context::Representational)], "io/üä");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Representational)], "ië/uë");
+                        Morpheme::Context(Context::Representational)], "iö/üë");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
                         Morpheme::Context(Context::Amalgamative)], "ao");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Amalgamative)], "ae");
+                        Morpheme::Context(Context::Amalgamative)], "aö");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Amalgamative)], "ea");
+                        Morpheme::Context(Context::Amalgamative)], "eo");
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Amalgamative)], "eo");
+                        Morpheme::Context(Context::Amalgamative)], "eö");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
                         Morpheme::Context(Context::Existential)], "u");
@@ -425,16 +426,16 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Context(Context::Functional)], "ou");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Representational)], "ua/aö");
+                        Morpheme::Context(Context::Representational)], "ua/iä");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Representational)], "ue/eö");
+                        Morpheme::Context(Context::Representational)], "ue/ië");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Representational)], "uo/io");
+                        Morpheme::Context(Context::Representational)], "uo/öä");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Representational)], "uö/iö");
+                        Morpheme::Context(Context::Representational)], "uö/öë");
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
                         Morpheme::Context(Context::Amalgamative)], "oa");
@@ -500,7 +501,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     // perspective + essence
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
                         Morpheme::Essence(Essence::Normal)], "l/");
-    hashmap.insert(vec![Morpheme::Perspective(Perspective::Polyadic),
+    hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
                         Morpheme::Essence(Essence::Normal)], "r/r/v");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
                         Morpheme::Essence(Essence::Normal)], "v/w");
@@ -508,7 +509,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Essence(Essence::Normal)], "z/y");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
                         Morpheme::Essence(Essence::Representative)], "ř/ř");
-    hashmap.insert(vec![Morpheme::Perspective(Perspective::Polyadic),
+    hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
                         Morpheme::Essence(Essence::Representative)], "tļ/l");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
                         Morpheme::Essence(Essence::Representative)], "lm/m/h");
@@ -522,9 +523,9 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     hashmap.insert(vec![Morpheme::Case(
         Case::Transrelative(Transrelative::Absolutive))], "e");
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Stimulative))], "ï");
-    hashmap.insert(vec![Morpheme::Case(
         Case::Transrelative(Transrelative::Affective))], "i");
+    hashmap.insert(vec![Morpheme::Case(
+        Case::Transrelative(Transrelative::Stimulative))], "ëi");
     hashmap.insert(vec![Morpheme::Case(
         Case::Transrelative(Transrelative::Effectuative))], "ö");
     hashmap.insert(vec![Morpheme::Case(
@@ -639,7 +640,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Observational)], "ái");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Observational)], "iá/oâ");
+                        Morpheme::Validation(Validation::Observational)], "iá/uâ");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Recollective)], "â");
@@ -648,7 +649,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Recollective)], "áu");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Recollective)], "iâ/uâ");
+                        Morpheme::Validation(Validation::Recollective)], "ié/oê");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Reportive)], "é");
@@ -657,25 +658,25 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Reportive)], "éi");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Reportive)], "ié/oê");
+                        Morpheme::Validation(Validation::Reportive)], "ió/üâ");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Purportive)], "î");
+                        Morpheme::Validation(Validation::Purportive)], "í");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
                         Morpheme::Validation(Validation::Purportive)], "éu");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Purportive)], "iê/uê");
+                        Morpheme::Validation(Validation::Purportive)], "iô/üê");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Observational)], "í");
-    hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
-                        Morpheme::Expectation(Expectation::Responsive),
                         Morpheme::Validation(Validation::Observational)], "êi");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
-                        Morpheme::Expectation(Expectation::Executive),
+                        Morpheme::Expectation(Expectation::Responsive),
                         Morpheme::Validation(Validation::Observational)], "êu");
+    hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
+                        Morpheme::Expectation(Expectation::Executive),
+                        Morpheme::Validation(Validation::Observational)], "eê");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Imaginary)], "ô");
@@ -684,7 +685,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Imaginary)], "óu");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Imaginary)], "uô/iô");
+                        Morpheme::Validation(Validation::Imaginary)], "uô/öê");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Conventional)], "ó");
@@ -693,7 +694,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Conventional)], "ói");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Conventional)], "uó/ió");
+                        Morpheme::Validation(Validation::Conventional)], "uó/öâ");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Intuitive)], "û");
@@ -702,7 +703,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Intuitive)], "íu");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Intuitive)], "ué/eô");
+                        Morpheme::Validation(Validation::Intuitive)], "ué/iê");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
                         Morpheme::Validation(Validation::Inferential)], "ú");
@@ -711,7 +712,7 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
                         Morpheme::Validation(Validation::Inferential)], "úi");
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Inferential)], "uá/aô");
+                        Morpheme::Validation(Validation::Inferential)], "uá/iâ");
     hashmap
 }
 
@@ -772,6 +773,7 @@ pub fn get_morphemes_names() -> HashMap<Morpheme, (&'static str, &'static str)> 
     names.insert(Morpheme::Affiliation(Affiliation::Variative), ("Variative", "VAR"));
     names.insert(Morpheme::Perspective(Perspective::Monadic), ("Monadic", "M"));
     names.insert(Morpheme::Perspective(Perspective::Polyadic), ("Polyadic", "P"));
+    names.insert(Morpheme::Perspective(Perspective::Agglomerative), ("Agglomerative", "G"));
     names.insert(Morpheme::Perspective(Perspective::Nomic), ("Nomic", "N"));
     names.insert(Morpheme::Perspective(Perspective::Abstract), ("Abstract", "A"));
     names.insert(Morpheme::Essence(Essence::Normal), ("Normal", "NRM"));
@@ -889,6 +891,7 @@ pub fn get_morphemes_content() -> MorphemeContent {
                             Morpheme::Affiliation(Affiliation::Variative)];
     let perspectives = vec![Morpheme::Perspective(Perspective::Monadic),
                            Morpheme::Perspective(Perspective::Polyadic),
+                           Morpheme::Perspective(Perspective::Agglomerative),
                            Morpheme::Perspective(Perspective::Nomic),
                            Morpheme::Perspective(Perspective::Abstract)];
     let essences = vec![Morpheme::Essence(Essence::Normal),

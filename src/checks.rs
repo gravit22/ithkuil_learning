@@ -180,21 +180,24 @@ pub fn generate_slot6(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
     let mut variants = Vec::new();
     for consonant_form in 0..data.morphemes_content.consonant_forms.len() {
         if key[0][consonant_form] == false {continue}
-        for configuration in 0..data.morphemes_content.configurations.len() {
-            if key[1][configuration] == false {continue}
-            for extension in 0..data.morphemes_content.extensions.len() {
-                if key[2][extension] == false {continue}
-                for affiliation in 0..data.morphemes_content.affiliations.len() {
-                    if key[3][affiliation] == false {continue}
+        for affiliation in 0..data.morphemes_content.affiliations.len() {
+            if key[1][affiliation] == false {continue}
+            for configuration in 0..data.morphemes_content.configurations.len() {
+                if key[2][configuration] == false {continue}
+                for extension in 0..data.morphemes_content.expectations.len() {
+                    if key[3][extension] == false {continue}
                     for perspective in 0..data.morphemes_content.perspectives.len() {
+                        if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Polyadic) {
+                            continue;
+                        }
                         if key[4][perspective] == false {continue}
                         for essence in 0..data.morphemes_content.essences.len() {
                             if key[5][essence] == false {continue}
                             variants.push(vec![
                                 data.morphemes_content.consonant_forms[consonant_form].clone()
-                                , data.morphemes_content.configurations[configuration].clone()
-                                , data.morphemes_content.extensions[extension].clone()
-                                , data.morphemes_content.affiliations[affiliation].clone()
+                                , data.morphemes_content.configurations[affiliation].clone()
+                                , data.morphemes_content.extensions[configuration].clone()
+                                , data.morphemes_content.affiliations[extension].clone()
                                 , data.morphemes_content.perspectives[perspective].clone()
                                 , data.morphemes_content.essences[essence].clone()]);
                         }
