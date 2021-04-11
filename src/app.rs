@@ -105,21 +105,21 @@ impl epi::App for TemplateApp {
                         self.current_menu = Menu::Slot6;
                         self.key = Vec::new();
                         self.key.push(vec![true, true]);
-                        self.key.push(vec![true, true, true, true, true, true, true, true, true
+                        self.key.push(vec![true, true, true, true]);
+                        self.key.push(vec![true, true, true, true, true, true, true, true, true, true
                                            , true, true, true, true, true, true, true, true, true, true]);
                         self.key.push(vec![true, true, true, true, true, true]);
-                        self.key.push(vec![true, true, true, true]);
                         self.key.push(vec![true, true, true, true]);
                         self.key.push(vec![true, true]);
 
                         self.options = Vec::new();
                         self.options.push(vec!["(C)", "(V)"]);
-                        self.options.push(vec!["UNI", "MSS", "MSC", "MSF", "MDS", "MDC",
+                        self.options.push(vec!["CSL", "ASO", "COA", "VAR"]);
+                        self.options.push(vec!["UNI", "DUP", "MSS", "MSC", "MSF", "MDS", "MDC",
                         "MDF", "MFS", "MFC", "MFF", "DSS", "DSC", "DSF", "DDS", "DDC", "DDF",
                         "DFS", "DFC", "DFF"]);
                         self.options.push(vec!["DEL", "PRX", "ICP", "ATV", "GRA", "DPL"]);
-                        self.options.push(vec!["CSL", "ASO", "COA", "VAR"]);
-                        self.options.push(vec!["M", "P", "N", "A"]);
+                        self.options.push(vec!["M", "G", "N", "A"]);
                         self.options.push(vec!["NRM", "RPV"]);
                     }
                     if ui.button("ReferentialCase").clicked() {
@@ -136,7 +136,7 @@ impl epi::App for TemplateApp {
                                                , "whatever"]);
                         self.options.push(vec!["M", "P", "N", "A"]);
                         self.options.push(vec!["NEUTRAL", "BENEFICIAL", "DETRIMENTAL"]);
-                        self.options.push(vec!["THM", "INS", "ABS", "STM", "AFF", "EFF", "ERG"
+                        self.options.push(vec!["THM", "INS", "ABS", "AFF", "STM", "EFF", "ERG"
                                                , "DAT", "IND"]);
                     }
                     if ui.button("Slot9IEV").clicked() {
@@ -167,6 +167,7 @@ impl epi::App for TemplateApp {
                         self.current_menu = Menu::Main;
                         self.choice = None;
                         self.key.clear();
+                        self.probabilities.clear();
                     }
                     if ui.button("Quit").clicked() {
                         frame.quit();
@@ -209,6 +210,7 @@ impl epi::App for TemplateApp {
                 self.current_menu = Menu::Main;
                 self.choice = None;
                 self.key.clear();
+                self.probabilities.clear();
             }
 
             // write buttons to chose parts of categories to include

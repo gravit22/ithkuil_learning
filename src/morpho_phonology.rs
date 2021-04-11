@@ -125,6 +125,7 @@ pub enum ConfigurationRelation {
 #[derive(PartialEq, Eq, Hash, Clone)]
 pub enum Configuration {
     Uniplex,
+    Duplex,
     MultiplexSimilar(ConfigurationRelation),
     MultiplexDissimilar(ConfigurationRelation),
     MultiplexFuzzy(ConfigurationRelation),
@@ -448,8 +449,14 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
                         Morpheme::Context(Context::Amalgamative)], "öe");
+    // affiliation
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Consolidative)], "");
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Associative)], "nļ/l");
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Coalescent)], "rļ/r");
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Variative)], "řļ/ř");
     // configuration + extension + affiliation + perspective + essence
     hashmap.insert(vec![Morpheme::Configuration(Configuration::Uniplex)], "");
+    hashmap.insert(vec![Morpheme::Configuration(Configuration::Duplex)], "s");
     hashmap.insert(vec![Morpheme::Configuration(
         Configuration::MultiplexSimilar(ConfigurationRelation::Separate))], "t");
     hashmap.insert(vec![Morpheme::Configuration(
@@ -457,64 +464,59 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     hashmap.insert(vec![Morpheme::Configuration(
         Configuration::MultiplexSimilar(ConfigurationRelation::Fused))], "p");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Separate))], "rt");
+        Configuration::DuplexSimilar(ConfigurationRelation::Separate))], "c");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Connected))], "rk");
+        Configuration::DuplexSimilar(ConfigurationRelation::Connected))], "ks");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Fused))], "rp");
+        Configuration::DuplexSimilar(ConfigurationRelation::Fused))], "ps");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Separate))], "n");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Separate))], "ţ");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Connected))], "ň");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Connected))], "f");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Fused))], "m");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Fused))], "ç");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Separate))], "rn");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Separate))], "ţs");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Connected))], "rň");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Connected))], "fs");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Fused))], "rm");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Fused))], "š");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Separate))], "lt");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Separate))], "z");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Connected))], "lk");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Connected))], "ž");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Fused))], "lp");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Fused))], "ż");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Separate))], "řt");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Separate))], "č");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Connected))], "řk");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Connected))], "kš");
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Fused))], "řp");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Fused))], "pš");
     // extension
     hashmap.insert(vec![Morpheme::Extension(Extension::Delimitive)], "");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Proximal)], "s");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Incipient)], "š");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Attenuative)], "f");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Graduative)], "ţ");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Deplitive)], "ç");
-    // affiliation
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Consolidative)], "");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Associative)], "d/t");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Coalescent)], "g/k");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Variative)], "b/p");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Proximal)], "d/t");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Incipient)], "g/k");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Attenuative)], "b/p");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Graduative)], "gz/g");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Deplitive)], "bz/b");
     // perspective + essence
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
                         Morpheme::Essence(Essence::Normal)], "l/");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
-                        Morpheme::Essence(Essence::Normal)], "r/r/v");
+                        Morpheme::Essence(Essence::Normal)], "r");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
                         Morpheme::Essence(Essence::Normal)], "v/w");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Abstract),
-                        Morpheme::Essence(Essence::Normal)], "z/y");
+                        Morpheme::Essence(Essence::Normal)], "j/y");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Essence(Essence::Representative)], "ř/ř");
-    hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
                         Morpheme::Essence(Essence::Representative)], "tļ/l");
+    hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
+                        Morpheme::Essence(Essence::Representative)], "ř");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
-                        Morpheme::Essence(Essence::Representative)], "lm/m/h");
+                        Morpheme::Essence(Essence::Representative)], "m/h");
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Abstract),
-                        Morpheme::Essence(Essence::Representative)], "ln/n/ç");
+                        Morpheme::Essence(Essence::Representative)], "n/ç");
     // cases
     hashmap.insert(vec![Morpheme::Case(
         Case::Transrelative(Transrelative::Thematic))], "a");
@@ -946,13 +948,11 @@ pub fn get_morphemes_content() -> MorphemeContent {
 }
 
 pub fn get_slot6_transformations() -> HashMap<&'static str, &'static str> {
-    let out = [("ts", "c"), ("tš", "č"), ("tţ", "ḑ"),
-        ("np", "mv"), ("ňk", "ňz"), ("nfC", "vC"), ("tf", "fs"), ("kf", "fš"),
-        ("ňy", "ż"), ("çy", "ž"), ("tçy", "j"), ("kçy", "gž"), ("pçy", "bž"),
-        ("Vtt", "Vnd"), ("Vkk", "Vng"), ("Vpp", "Vmb"), ("nn", "nz"), ("mm", "mz"),
-        ("ltt", "ld"), ("lkk", "lg"), ("lpp", "lb"), ("rnm", "nḑ"), ("rmn", "mḑ"),
-        ("rtt", "rd"), ("rkk", "rg"), ("rpp", "rb"), ("rňm", "ňv"), ("rňn", "ňḑ"),
-        ("řtt", "řd"), ("řkk", "řg"), ("řpp", "řb")]
+    let out = [("pp", "mp"), ("tt", "nt"), ("kk", "nk"),
+        ("ll", "pļ"), ("pb", "mb"), ("kg", "ng"), ("çy", "nd"), ("rr", "ns"),
+        ("rř", "nš"), ("řr", "ňs"), ("řř", "ňš"), ("Cgm", "Cx"), ("Cgn", "Cň"),
+        ("ngn", "ňn"), ("Cçx", "Cxw"), ("Cbm", "Cv"), ("Cbn", "Cḑ"), ("ff", "vw"),
+        ("ţţ", "ḑy")]
         .iter().cloned().collect();
     out
 }

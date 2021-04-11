@@ -75,6 +75,7 @@ fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, 
                         e_a = true;
                     }
                 }
+                // vowel forms
                 if v.contains('/') && v.chars().next().unwrap() == 'i' {
                     if variant[0] == Morpheme::Y {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
@@ -87,25 +88,30 @@ fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, 
                     } else {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     }
-                } else if v.contains('/') && beginning == 3 {
-                    if expected_answer.is_empty() {
+                }
+                // slot 6 forms
+                else if v.contains('/') && beginning == 1 {
+                    if is_end_empty(&variant) {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     } else {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
                     }
-                } else if variant[beginning..end+1]
-                == vec![Morpheme::Perspective(Perspective::Polyadic), Morpheme::Essence(Essence::Normal)]
-                    && expected_answer.is_empty() == false {
-                    if expected_answer.chars().next().unwrap() == 'ř' {
-                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[2]);
+                } else if (variant[beginning..end+1]
+                == vec![Morpheme::Perspective(Perspective::Nomic), Morpheme::Essence(Essence::Representative)]
+                    || variant[beginning..end+1]
+                    == vec![Morpheme::Perspective(Perspective::Abstract), Morpheme::Essence(Essence::Representative)])
+                    && expected_answer.chars().count() >= 2 {
+                    let chars = expected_answer.chars().collect::<Vec<char>>();
+                    let last_char = chars[chars.len()];
+                    let second_to_last_char = chars[chars.len() - 1];
+                    if "tkp".contains(last_char) && (data.consonants.contains(second_to_last_char)
+                        || variant[0] == Morpheme::C) {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
+                    } else {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     }
-                } else if variant[beginning..end+1].contains(&Morpheme::Essence(Essence::Representative))
-                    && (variant[beginning..end+1].contains(&Morpheme::Perspective(Perspective::Nomic))
-                    || variant[beginning..end+1].contains(&Morpheme::Perspective(Perspective::Abstract)))
-                    && beginning == 4 && e_a {
-                    expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[2]);
-                } else if v.contains('/') && beginning == 4 {
-                    if expected_answer.is_empty() {
+                } else if v.contains('/') && beginning == 3 {
+                    if variant[2] == Morpheme::Configuration(Configuration::Uniplex) {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     } else {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
@@ -190,14 +196,15 @@ pub fn generate_slot6(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
                         if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Polyadic) {
                             continue;
                         }
+                        if perspective == 4 {continue}
                         if key[4][perspective] == false {continue}
                         for essence in 0..data.morphemes_content.essences.len() {
                             if key[5][essence] == false {continue}
                             variants.push(vec![
                                 data.morphemes_content.consonant_forms[consonant_form].clone()
-                                , data.morphemes_content.configurations[affiliation].clone()
-                                , data.morphemes_content.extensions[configuration].clone()
-                                , data.morphemes_content.affiliations[extension].clone()
+                                , data.morphemes_content.affiliations[affiliation].clone()
+                                , data.morphemes_content.configurations[configuration].clone()
+                                , data.morphemes_content.extensions[extension].clone()
                                 , data.morphemes_content.perspectives[perspective].clone()
                                 , data.morphemes_content.essences[essence].clone()]);
                         }
@@ -222,7 +229,8 @@ pub fn generate_referentials(data: &Data, probabilities: &mut Vec<f64>, key: &Ve
         for perspective in 0..data.morphemes_content.perspectives.len() {
             if key[1][perspective] == false {continue}
             if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Nomic)
-                || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Abstract) {
+                || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Abstract)
+                || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Agglomerative) {
                 continue;
             }
             if (data.morphemes_content.parties[party] == Morpheme::Party(Party::Provisional)
@@ -344,4 +352,14 @@ fn clamp(value: f64) -> f64 {
         return 0.9;
     }
     value
+}
+
+fn is_end_empty(variant: &Vec<Morpheme>) -> bool {
+    if variant[2] == Morpheme::Configuration(Configuration::Uniplex)
+        && variant[3] == Morpheme::Extension(Extension::Delimitive)
+        && variant[4] == Morpheme::Perspective(Perspective::Monadic)
+        && variant[5] == Morpheme::Essence(Essence::Normal) {
+        return true
+    }
+    false
 }
