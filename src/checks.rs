@@ -227,6 +227,7 @@ pub fn generate_referentials(data: &Data, probabilities: &mut Vec<f64>, key: &Ve
     for party in 0..data.morphemes_content.parties.len() {
         if key[0][party] == false {continue}
         for perspective in 0..data.morphemes_content.perspectives.len() {
+            if perspective == 4 {continue}
             if key[1][perspective] == false {continue}
             if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Nomic)
                 || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Abstract)
