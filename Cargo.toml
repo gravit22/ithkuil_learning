@@ -12,9 +12,9 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 eframe = "0.11.0" # Gives us egui, epi and web+native backends
 
-serde = { version = "1", features = ["derive"], optional = true }
+serde = { version = "1", features = ["derive"], optional = true} # add optional = true if want persistance
 rand = "0.7"
-stopwatch = "0.0.7"
+time = "0.2"
 
 [features]
 default = []

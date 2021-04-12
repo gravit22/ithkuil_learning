@@ -1,7 +1,6 @@
 use std::collections::HashMap;
-use std::fmt::{Display, Debug};
-use std::fmt;
 
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub struct MorphemeContent {
     pub stems: Vec<Morpheme>,
     pub versions: Vec<Morpheme>,
@@ -47,6 +46,7 @@ pub enum Word {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Morpheme {
     Stem(Stem),
     Version(Version),
@@ -80,6 +80,7 @@ pub enum Morpheme {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Stem {
     Stem1,
     Stem2,
@@ -88,18 +89,21 @@ pub enum Stem {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Version {
     Processual,
     Completive,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Function {
     Stative,
     Dynamic,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Context {
     Existential,
     Functional,
@@ -108,6 +112,7 @@ pub enum Context {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Specification {
     Basic,
     Contential,
@@ -116,6 +121,7 @@ pub enum Specification {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum ConfigurationRelation {
     Separate,
     Connected,
@@ -123,6 +129,7 @@ pub enum ConfigurationRelation {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Configuration {
     Uniplex,
     Duplex,
@@ -135,6 +142,7 @@ pub enum Configuration {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Extension {
     Delimitive,
     Proximal,
@@ -145,6 +153,7 @@ pub enum Extension {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Affiliation {
     Consolidative,
     Associative,
@@ -153,6 +162,7 @@ pub enum Affiliation {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Perspective {
     Monadic,
     Agglomerative,
@@ -162,12 +172,14 @@ pub enum Perspective {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Essence {
     Normal,
     Representative,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Transrelative {
     Thematic,
     Instrumental,
@@ -181,6 +193,7 @@ pub enum Transrelative {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Appositive {
     Possessive,
     Proprietive,
@@ -194,6 +207,7 @@ pub enum Appositive {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Associative {
     Applicative,
     Purposive,
@@ -207,6 +221,7 @@ pub enum Associative {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Adverbial {
     Functive,
     Transformative,
@@ -220,6 +235,7 @@ pub enum Adverbial {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Relational {
     Pertinential,
     Assimilative,
@@ -232,6 +248,7 @@ pub enum Relational {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Affinitive {
     Activative,
     Descriptive,
@@ -244,6 +261,7 @@ pub enum Affinitive {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum SpatioTemporal1 {
     Locative,
     Attendant,
@@ -256,6 +274,7 @@ pub enum SpatioTemporal1 {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum SpatioTemporal2 {
     Concursive,
     Assessive,
@@ -268,6 +287,7 @@ pub enum SpatioTemporal2 {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Case {
     Transrelative(Transrelative),
     Appositive(Appositive),
@@ -280,12 +300,14 @@ pub enum Case {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Illocution {
     Assertive,
     Performative,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Expectation {
     Cognitive,
     Responsive,
@@ -293,6 +315,7 @@ pub enum Expectation {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Validation {
     Observational,
     Recollective,
@@ -305,12 +328,14 @@ pub enum Validation {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Relation {
     Framed,
     Unframed,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Animacy {
     Animate,
     Inanimate,
@@ -318,6 +343,7 @@ pub enum Animacy {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Party {
     Speaker,
     Addressee,
@@ -327,514 +353,515 @@ pub enum Party {
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub enum Effect {
     Neutral,
     Beneficial,
     Detrimental,
 }
 
-pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
+pub fn get_morphemes() -> HashMap<Vec<Morpheme>, String> {
     let mut hashmap = HashMap::new();
     // stems + versions
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem1),
-                        Morpheme::Version(Version::Processual)], "a");
+                        Morpheme::Version(Version::Processual)], "a".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem1),
-                        Morpheme::Version(Version::Completive)], "ä");
+                        Morpheme::Version(Version::Completive)], "ä".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem2),
-                        Morpheme::Version(Version::Processual)], "e");
+                        Morpheme::Version(Version::Processual)], "e".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem2),
-                        Morpheme::Version(Version::Completive)], "i");
+                        Morpheme::Version(Version::Completive)], "i".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem3),
-                        Morpheme::Version(Version::Processual)], "u");
+                        Morpheme::Version(Version::Processual)], "u".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem3),
-                        Morpheme::Version(Version::Completive)], "ü");
+                        Morpheme::Version(Version::Completive)], "ü".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem0),
-                        Morpheme::Version(Version::Processual)], "o");
+                        Morpheme::Version(Version::Processual)], "o".to_owned());
     hashmap.insert(vec![Morpheme::Stem(Stem::Stem0),
-                        Morpheme::Version(Version::Completive)], "ö");
+                        Morpheme::Version(Version::Completive)], "ö".to_owned());
     // function + specification + context
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Existential)], "a");
+                        Morpheme::Context(Context::Existential)], "a".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Existential)], "ä");
+                        Morpheme::Context(Context::Existential)], "ä".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Existential)], "e");
+                        Morpheme::Context(Context::Existential)], "e".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Existential)], "i");
+                        Morpheme::Context(Context::Existential)], "i".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Functional)], "ai");
+                        Morpheme::Context(Context::Functional)], "ai".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Functional)], "au");
+                        Morpheme::Context(Context::Functional)], "au".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Functional)], "ei");
+                        Morpheme::Context(Context::Functional)], "ei".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Functional)], "eu");
+                        Morpheme::Context(Context::Functional)], "eu".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Representational)], "ia/uä");
+                        Morpheme::Context(Context::Representational)], "ia/uä".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Representational)], "ie/uë");
+                        Morpheme::Context(Context::Representational)], "ie/uë".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Representational)], "io/üä");
+                        Morpheme::Context(Context::Representational)], "io/üä".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Representational)], "iö/üë");
+                        Morpheme::Context(Context::Representational)], "iö/üë".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Amalgamative)], "ao");
+                        Morpheme::Context(Context::Amalgamative)], "ao".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Amalgamative)], "aö");
+                        Morpheme::Context(Context::Amalgamative)], "aö".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Amalgamative)], "eo");
+                        Morpheme::Context(Context::Amalgamative)], "eo".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Stative),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Amalgamative)], "eö");
+                        Morpheme::Context(Context::Amalgamative)], "eö".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Existential)], "u");
+                        Morpheme::Context(Context::Existential)], "u".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Existential)], "ü");
+                        Morpheme::Context(Context::Existential)], "ü".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Existential)], "o");
+                        Morpheme::Context(Context::Existential)], "o".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Existential)], "ö");
+                        Morpheme::Context(Context::Existential)], "ö".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Functional)], "ui");
+                        Morpheme::Context(Context::Functional)], "ui".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Functional)], "iu");
+                        Morpheme::Context(Context::Functional)], "iu".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Functional)], "oi");
+                        Morpheme::Context(Context::Functional)], "oi".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Functional)], "ou");
+                        Morpheme::Context(Context::Functional)], "ou".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Representational)], "ua/iä");
+                        Morpheme::Context(Context::Representational)], "ua/iä".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Representational)], "ue/ië");
+                        Morpheme::Context(Context::Representational)], "ue/ië".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Representational)], "uo/öä");
+                        Morpheme::Context(Context::Representational)], "uo/öä".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Representational)], "uö/öë");
+                        Morpheme::Context(Context::Representational)], "uö/öë".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Basic),
-                        Morpheme::Context(Context::Amalgamative)], "oa");
+                        Morpheme::Context(Context::Amalgamative)], "oa".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Contential),
-                        Morpheme::Context(Context::Amalgamative)], "öa");
+                        Morpheme::Context(Context::Amalgamative)], "öa".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Constitutive),
-                        Morpheme::Context(Context::Amalgamative)], "oe");
+                        Morpheme::Context(Context::Amalgamative)], "oe".to_owned());
     hashmap.insert(vec![Morpheme::Function(Function::Dynamic),
                         Morpheme::Specification(Specification::Objective),
-                        Morpheme::Context(Context::Amalgamative)], "öe");
+                        Morpheme::Context(Context::Amalgamative)], "öe".to_owned());
     // affiliation
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Consolidative)], "");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Associative)], "nļ/l");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Coalescent)], "rļ/r");
-    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Variative)], "řļ/ř");
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Consolidative)], "".to_owned());
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Associative)], "nļ/l".to_owned());
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Coalescent)], "rļ/r".to_owned());
+    hashmap.insert(vec![Morpheme::Affiliation(Affiliation::Variative)], "řļ/ř".to_owned());
     // configuration + extension + affiliation + perspective + essence
-    hashmap.insert(vec![Morpheme::Configuration(Configuration::Uniplex)], "");
-    hashmap.insert(vec![Morpheme::Configuration(Configuration::Duplex)], "s");
+    hashmap.insert(vec![Morpheme::Configuration(Configuration::Uniplex)], "".to_owned());
+    hashmap.insert(vec![Morpheme::Configuration(Configuration::Duplex)], "s".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexSimilar(ConfigurationRelation::Separate))], "t");
+        Configuration::MultiplexSimilar(ConfigurationRelation::Separate))], "t".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexSimilar(ConfigurationRelation::Connected))], "k");
+        Configuration::MultiplexSimilar(ConfigurationRelation::Connected))], "k".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexSimilar(ConfigurationRelation::Fused))], "p");
+        Configuration::MultiplexSimilar(ConfigurationRelation::Fused))], "p".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Separate))], "c");
+        Configuration::DuplexSimilar(ConfigurationRelation::Separate))], "c".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Connected))], "ks");
+        Configuration::DuplexSimilar(ConfigurationRelation::Connected))], "ks".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexSimilar(ConfigurationRelation::Fused))], "ps");
+        Configuration::DuplexSimilar(ConfigurationRelation::Fused))], "ps".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Separate))], "ţ");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Separate))], "ţ".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Connected))], "f");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Connected))], "f".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexDissimilar(ConfigurationRelation::Fused))], "ç");
+        Configuration::MultiplexDissimilar(ConfigurationRelation::Fused))], "ç".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Separate))], "ţs");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Separate))], "ţs".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Connected))], "fs");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Connected))], "fs".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexDissimilar(ConfigurationRelation::Fused))], "š");
+        Configuration::DuplexDissimilar(ConfigurationRelation::Fused))], "š".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Separate))], "z");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Separate))], "z".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Connected))], "ž");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Connected))], "ž".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::MultiplexFuzzy(ConfigurationRelation::Fused))], "ż");
+        Configuration::MultiplexFuzzy(ConfigurationRelation::Fused))], "ż".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Separate))], "č");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Separate))], "č".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Connected))], "kš");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Connected))], "kš".to_owned());
     hashmap.insert(vec![Morpheme::Configuration(
-        Configuration::DuplexFuzzy(ConfigurationRelation::Fused))], "pš");
+        Configuration::DuplexFuzzy(ConfigurationRelation::Fused))], "pš".to_owned());
     // extension
-    hashmap.insert(vec![Morpheme::Extension(Extension::Delimitive)], "");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Proximal)], "d/t");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Incipient)], "g/k");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Attenuative)], "b/p");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Graduative)], "gz/g");
-    hashmap.insert(vec![Morpheme::Extension(Extension::Deplitive)], "bz/b");
+    hashmap.insert(vec![Morpheme::Extension(Extension::Delimitive)], "".to_owned());
+    hashmap.insert(vec![Morpheme::Extension(Extension::Proximal)], "d/t".to_owned());
+    hashmap.insert(vec![Morpheme::Extension(Extension::Incipient)], "g/k".to_owned());
+    hashmap.insert(vec![Morpheme::Extension(Extension::Attenuative)], "b/p".to_owned());
+    hashmap.insert(vec![Morpheme::Extension(Extension::Graduative)], "gz/g".to_owned());
+    hashmap.insert(vec![Morpheme::Extension(Extension::Deplitive)], "bz/b".to_owned());
     // perspective + essence
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Essence(Essence::Normal)], "l/");
+                        Morpheme::Essence(Essence::Normal)], "l/".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
-                        Morpheme::Essence(Essence::Normal)], "r");
+                        Morpheme::Essence(Essence::Normal)], "r".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
-                        Morpheme::Essence(Essence::Normal)], "v/w");
+                        Morpheme::Essence(Essence::Normal)], "v/w".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Abstract),
-                        Morpheme::Essence(Essence::Normal)], "j/y");
+                        Morpheme::Essence(Essence::Normal)], "j/y".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Essence(Essence::Representative)], "tļ/l");
+                        Morpheme::Essence(Essence::Representative)], "tļ/l".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Agglomerative),
-                        Morpheme::Essence(Essence::Representative)], "ř");
+                        Morpheme::Essence(Essence::Representative)], "ř".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Nomic),
-                        Morpheme::Essence(Essence::Representative)], "m/h");
+                        Morpheme::Essence(Essence::Representative)], "m/h".to_owned());
     hashmap.insert(vec![Morpheme::Perspective(Perspective::Abstract),
-                        Morpheme::Essence(Essence::Representative)], "n/ç");
+                        Morpheme::Essence(Essence::Representative)], "n/ç".to_owned());
     // cases
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Thematic))], "a");
+        Case::Transrelative(Transrelative::Thematic))], "a".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Instrumental))], "ä");
+        Case::Transrelative(Transrelative::Instrumental))], "ä".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Absolutive))], "e");
+        Case::Transrelative(Transrelative::Absolutive))], "e".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Affective))], "i");
+        Case::Transrelative(Transrelative::Affective))], "i".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Stimulative))], "ëi");
+        Case::Transrelative(Transrelative::Stimulative))], "ëi".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Effectuative))], "ö");
+        Case::Transrelative(Transrelative::Effectuative))], "ö".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Ergative))], "o");
+        Case::Transrelative(Transrelative::Ergative))], "o".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Dative))], "ü");
+        Case::Transrelative(Transrelative::Dative))], "ü".to_owned());
     hashmap.insert(vec![Morpheme::Case(
-        Case::Transrelative(Transrelative::Inducive))], "u");
+        Case::Transrelative(Transrelative::Inducive))], "u".to_owned());
     // speaker
     hashmap.insert(vec![Morpheme::Party(Party::Speaker),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "l");
+                        Morpheme::Effect(Effect::Neutral)], "l".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Speaker),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "r");
+                        Morpheme::Effect(Effect::Beneficial)], "r".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Speaker),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "ř");
+                        Morpheme::Effect(Effect::Detrimental)], "ř".to_owned());
     // addressee
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "s");
+                        Morpheme::Effect(Effect::Neutral)], "s".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "š");
+                        Morpheme::Effect(Effect::Beneficial)], "š".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "ž");
+                        Morpheme::Effect(Effect::Detrimental)], "ž".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Neutral)], "n");
+                        Morpheme::Effect(Effect::Neutral)], "n".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Beneficial)], "t");
+                        Morpheme::Effect(Effect::Beneficial)], "t".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Addressee),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Detrimental)], "d");
+                        Morpheme::Effect(Effect::Detrimental)], "d".to_owned());
     // third party
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "m");
+                        Morpheme::Effect(Effect::Neutral)], "m".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "p");
+                        Morpheme::Effect(Effect::Beneficial)], "p".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "b");
+                        Morpheme::Effect(Effect::Detrimental)], "b".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Neutral)], "ň");
+                        Morpheme::Effect(Effect::Neutral)], "ň".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Beneficial)], "k");
+                        Morpheme::Effect(Effect::Beneficial)], "k".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Detrimental)], "g");
+                        Morpheme::Effect(Effect::Detrimental)], "g".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "z");
+                        Morpheme::Effect(Effect::Neutral)], "z".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "ţ");
+                        Morpheme::Effect(Effect::Beneficial)], "ţ".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "ḑ");
+                        Morpheme::Effect(Effect::Detrimental)], "ḑ".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Neutral)], "ż");
+                        Morpheme::Effect(Effect::Neutral)], "ż".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Beneficial)], "f");
+                        Morpheme::Effect(Effect::Beneficial)], "f".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
                         Morpheme::Perspective(Perspective::Polyadic),
-                        Morpheme::Effect(Effect::Detrimental)], "v");
+                        Morpheme::Effect(Effect::Detrimental)], "v".to_owned());
     // others
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Mixed)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "c");
+                        Morpheme::Effect(Effect::Neutral)], "c".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Mixed)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "č");
+                        Morpheme::Effect(Effect::Beneficial)], "č".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::ThirdParty(Animacy::Mixed)),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "j");
+                        Morpheme::Effect(Effect::Detrimental)], "j".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Obviative),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "th");
+                        Morpheme::Effect(Effect::Neutral)], "th".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Obviative),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "ph");
+                        Morpheme::Effect(Effect::Beneficial)], "ph".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Obviative),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "kh");
+                        Morpheme::Effect(Effect::Detrimental)], "kh".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Provisional),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Neutral)], "ll");
+                        Morpheme::Effect(Effect::Neutral)], "ll".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Provisional),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Beneficial)], "rr");
+                        Morpheme::Effect(Effect::Beneficial)], "rr".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Provisional),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "řř");
+                        Morpheme::Effect(Effect::Detrimental)], "řř".to_owned());
     hashmap.insert(vec![Morpheme::Party(Party::Provisional),
                         Morpheme::Perspective(Perspective::Monadic),
-                        Morpheme::Effect(Effect::Detrimental)], "řř");
+                        Morpheme::Effect(Effect::Detrimental)], "řř".to_owned());
     // illocution + expectation + validation
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Observational)], "á");
+                        Morpheme::Validation(Validation::Observational)], "á".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Observational)], "ái");
+                        Morpheme::Validation(Validation::Observational)], "ái".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Observational)], "iá/uâ");
+                        Morpheme::Validation(Validation::Observational)], "iá/uâ".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Recollective)], "â");
+                        Morpheme::Validation(Validation::Recollective)], "â".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Recollective)], "áu");
+                        Morpheme::Validation(Validation::Recollective)], "áu".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Recollective)], "ié/oê");
+                        Morpheme::Validation(Validation::Recollective)], "ié/oê".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Reportive)], "é");
+                        Morpheme::Validation(Validation::Reportive)], "é".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Reportive)], "éi");
+                        Morpheme::Validation(Validation::Reportive)], "éi".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Reportive)], "ió/üâ");
+                        Morpheme::Validation(Validation::Reportive)], "ió/üâ".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Purportive)], "í");
+                        Morpheme::Validation(Validation::Purportive)], "í".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Purportive)], "éu");
+                        Morpheme::Validation(Validation::Purportive)], "éu".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Purportive)], "iô/üê");
+                        Morpheme::Validation(Validation::Purportive)], "iô/üê".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Observational)], "êi");
+                        Morpheme::Validation(Validation::Observational)], "êi".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Observational)], "êu");
+                        Morpheme::Validation(Validation::Observational)], "êu".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Performative),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Observational)], "eê");
+                        Morpheme::Validation(Validation::Observational)], "eê".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Imaginary)], "ô");
+                        Morpheme::Validation(Validation::Imaginary)], "ô".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Imaginary)], "óu");
+                        Morpheme::Validation(Validation::Imaginary)], "óu".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Imaginary)], "uô/öê");
+                        Morpheme::Validation(Validation::Imaginary)], "uô/öê".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Conventional)], "ó");
+                        Morpheme::Validation(Validation::Conventional)], "ó".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Conventional)], "ói");
+                        Morpheme::Validation(Validation::Conventional)], "ói".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Conventional)], "uó/öâ");
+                        Morpheme::Validation(Validation::Conventional)], "uó/öâ".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Intuitive)], "û");
+                        Morpheme::Validation(Validation::Intuitive)], "û".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Intuitive)], "íu");
+                        Morpheme::Validation(Validation::Intuitive)], "íu".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Intuitive)], "ué/iê");
+                        Morpheme::Validation(Validation::Intuitive)], "ué/iê".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Cognitive),
-                        Morpheme::Validation(Validation::Inferential)], "ú");
+                        Morpheme::Validation(Validation::Inferential)], "ú".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Responsive),
-                        Morpheme::Validation(Validation::Inferential)], "úi");
+                        Morpheme::Validation(Validation::Inferential)], "úi".to_owned());
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
-                        Morpheme::Validation(Validation::Inferential)], "uá/iâ");
+                        Morpheme::Validation(Validation::Inferential)], "uá/iâ".to_owned());
     hashmap
 }
 
-pub fn get_morphemes_names() -> HashMap<Morpheme, (&'static str, &'static str)> {
+pub fn get_morphemes_names() -> HashMap<Morpheme, (String, String)> {
     let mut names = HashMap::new();
-    names.insert(Morpheme::Stem(Stem::Stem1), ("Stem 1", "S1"));
-    names.insert(Morpheme::Stem(Stem::Stem2), ("Stem 2", "S2"));
-    names.insert(Morpheme::Stem(Stem::Stem3), ("Stem 3", "S3"));
-    names.insert(Morpheme::Stem(Stem::Stem0), ("Stem 0", "S0"));
-    names.insert(Morpheme::Version(Version::Processual), ("Processual", "PRC"));
-    names.insert(Morpheme::Version(Version::Completive), ("Completive", "CPT"));
-    names.insert(Morpheme::Configuration(Configuration::Uniplex), ("Uniplex", "UNI"));
+    names.insert(Morpheme::Stem(Stem::Stem1), ("Stem 1".to_owned(), "S1".to_owned()));
+    names.insert(Morpheme::Stem(Stem::Stem2), ("Stem 2".to_owned(), "S2".to_owned()));
+    names.insert(Morpheme::Stem(Stem::Stem3), ("Stem 3".to_owned(), "S3".to_owned()));
+    names.insert(Morpheme::Stem(Stem::Stem0), ("Stem 0".to_owned(), "S0".to_owned()));
+    names.insert(Morpheme::Version(Version::Processual), ("Processual".to_owned(), "PRC".to_owned()));
+    names.insert(Morpheme::Version(Version::Completive), ("Completive".to_owned(), "CPT".to_owned()));
+    names.insert(Morpheme::Configuration(Configuration::Uniplex), ("Uniplex".to_owned(), "UNI".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexSimilar(
-        ConfigurationRelation::Separate)), ("Multiplex-similar: separate", "MSS"));
+        ConfigurationRelation::Separate)), ("Multiplex-similar: separate".to_owned(), "MSS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexSimilar(
-        ConfigurationRelation::Connected)), ("Multiplex-similar: connected", "MSC"));
+        ConfigurationRelation::Connected)), ("Multiplex-similar: connected".to_owned(), "MSC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexSimilar(
-        ConfigurationRelation::Fused)), ("Multiplex-similar: fused", "MSF"));
+        ConfigurationRelation::Fused)), ("Multiplex-similar: fused".to_owned(), "MSF".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexDissimilar(
-        ConfigurationRelation::Separate)), ("Multiplex-dissimilar: separate", "MDS"));
+        ConfigurationRelation::Separate)), ("Multiplex-dissimilar: separate".to_owned(), "MDS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexDissimilar(
-        ConfigurationRelation::Connected)), ("Multiplex-dissimilar: connected", "MDC"));
+        ConfigurationRelation::Connected)), ("Multiplex-dissimilar: connected".to_owned(), "MDC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexDissimilar(
-        ConfigurationRelation::Fused)), ("Multiplex-dissimilar: fused", "MDF"));
+        ConfigurationRelation::Fused)), ("Multiplex-dissimilar: fused".to_owned(), "MDF".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexFuzzy(
-        ConfigurationRelation::Separate)), ("Multiplex-fuzzy: separate", "MFS"));
+        ConfigurationRelation::Separate)), ("Multiplex-fuzzy: separate".to_owned(), "MFS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexFuzzy(
-        ConfigurationRelation::Connected)), ("Multiplex-fuzzy: connected", "MFC"));
+        ConfigurationRelation::Connected)), ("Multiplex-fuzzy: connected".to_owned(), "MFC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::MultiplexFuzzy(
-        ConfigurationRelation::Fused)), ("Multiplex-fuzzy: fused", "MFF"));
+        ConfigurationRelation::Fused)), ("Multiplex-fuzzy: fused".to_owned(), "MFF".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexSimilar(
-        ConfigurationRelation::Separate)), ("Duplex-similar: separate", "DSS"));
+        ConfigurationRelation::Separate)), ("Duplex-similar: separate".to_owned(), "DSS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexSimilar(
-        ConfigurationRelation::Connected)), ("Duplex-similar: connected", "DSC"));
+        ConfigurationRelation::Connected)), ("Duplex-similar: connected".to_owned(), "DSC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexSimilar(
-        ConfigurationRelation::Fused)), ("Duplex-similar: fused", "DSF"));
+        ConfigurationRelation::Fused)), ("Duplex-similar: fused".to_owned(), "DSF".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexDissimilar(
-        ConfigurationRelation::Separate)), ("Duplex-dissimilar: separate", "DDS"));
+        ConfigurationRelation::Separate)), ("Duplex-dissimilar: separate".to_owned(), "DDS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexDissimilar(
-        ConfigurationRelation::Connected)), ("Duplex-dissimilar: connected", "DDC"));
+        ConfigurationRelation::Connected)), ("Duplex-dissimilar: connected".to_owned(), "DDC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexDissimilar(
-        ConfigurationRelation::Fused)), ("Duplex-dissimilar: fused", "DDF"));
+        ConfigurationRelation::Fused)), ("Duplex-dissimilar: fused".to_owned(), "DDF".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexFuzzy(
-        ConfigurationRelation::Separate)), ("Duplex-fuzzy: separate", "DFS"));
+        ConfigurationRelation::Separate)), ("Duplex-fuzzy: separate".to_owned(), "DFS".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexFuzzy(
-        ConfigurationRelation::Connected)), ("Duplex-fuzzy: connected", "DFC"));
+        ConfigurationRelation::Connected)), ("Duplex-fuzzy: connected".to_owned(), "DFC".to_owned()));
     names.insert(Morpheme::Configuration(Configuration::DuplexFuzzy(
-        ConfigurationRelation::Fused)), ("Duplex-fuzzy: fused", "DFF"));
-    names.insert(Morpheme::Extension(Extension::Delimitive), ("Delimitive", "DEL"));
-    names.insert(Morpheme::Extension(Extension::Proximal), ("Proximal", "PRX"));
-    names.insert(Morpheme::Extension(Extension::Incipient), ("Incipient", "ICP"));
-    names.insert(Morpheme::Extension(Extension::Attenuative), ("Attenuative", "ATV"));
-    names.insert(Morpheme::Extension(Extension::Graduative), ("Graduative", "GRA"));
-    names.insert(Morpheme::Extension(Extension::Deplitive), ("Deplitive", "DPL"));
-    names.insert(Morpheme::Affiliation(Affiliation::Consolidative), ("Consolidative", "CSL"));
-    names.insert(Morpheme::Affiliation(Affiliation::Associative), ("Associative", "ASO"));
-    names.insert(Morpheme::Affiliation(Affiliation::Coalescent), ("Coalescent", "COA"));
-    names.insert(Morpheme::Affiliation(Affiliation::Variative), ("Variative", "VAR"));
-    names.insert(Morpheme::Perspective(Perspective::Monadic), ("Monadic", "M"));
-    names.insert(Morpheme::Perspective(Perspective::Polyadic), ("Polyadic", "P"));
-    names.insert(Morpheme::Perspective(Perspective::Agglomerative), ("Agglomerative", "G"));
-    names.insert(Morpheme::Perspective(Perspective::Nomic), ("Nomic", "N"));
-    names.insert(Morpheme::Perspective(Perspective::Abstract), ("Abstract", "A"));
-    names.insert(Morpheme::Essence(Essence::Normal), ("Normal", "NRM"));
-    names.insert(Morpheme::Essence(Essence::Representative), ("Representative", "RPV"));
-    names.insert(Morpheme::Function(Function::Stative), ("Stative", "STA"));
-    names.insert(Morpheme::Function(Function::Dynamic), ("Dynamic", "DYN"));
-    names.insert(Morpheme::Specification(Specification::Basic), ("Basic", "BSC"));
-    names.insert(Morpheme::Specification(Specification::Contential), ("Contential", "CTE"));
-    names.insert(Morpheme::Specification(Specification::Constitutive), ("Constitutive", "CSV"));
-    names.insert(Morpheme::Specification(Specification::Objective), ("Objective", "OBJ"));
-    names.insert(Morpheme::Context(Context::Existential), ("Existential", "EXS"));
-    names.insert(Morpheme::Context(Context::Functional), ("Functional", "FNC"));
-    names.insert(Morpheme::Context(Context::Representational), ("Representational", "RPS"));
-    names.insert(Morpheme::Context(Context::Amalgamative), ("Amalgamative", "AMG"));
-    names.insert(Morpheme::Party(Party::Speaker), ("Speaker", "I"));
-    names.insert(Morpheme::Party(Party::Addressee), ("Addressee", "you"));
+        ConfigurationRelation::Fused)), ("Duplex-fuzzy: fused".to_owned(), "DFF".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Delimitive), ("Delimitive".to_owned(), "DEL".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Proximal), ("Proximal".to_owned(), "PRX".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Incipient), ("Incipient".to_owned(), "ICP".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Attenuative), ("Attenuative".to_owned(), "ATV".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Graduative), ("Graduative".to_owned(), "GRA".to_owned()));
+    names.insert(Morpheme::Extension(Extension::Deplitive), ("Deplitive".to_owned(), "DPL".to_owned()));
+    names.insert(Morpheme::Affiliation(Affiliation::Consolidative), ("Consolidative".to_owned(), "CSL".to_owned()));
+    names.insert(Morpheme::Affiliation(Affiliation::Associative), ("Associative".to_owned(), "ASO".to_owned()));
+    names.insert(Morpheme::Affiliation(Affiliation::Coalescent), ("Coalescent".to_owned(), "COA".to_owned()));
+    names.insert(Morpheme::Affiliation(Affiliation::Variative), ("Variative".to_owned(), "VAR".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Monadic), ("Monadic".to_owned(), "M".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Polyadic), ("Polyadic".to_owned(), "P".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Agglomerative), ("Agglomerative".to_owned(), "G".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Nomic), ("Nomic".to_owned(), "N".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Abstract), ("Abstract".to_owned(), "A".to_owned()));
+    names.insert(Morpheme::Essence(Essence::Normal), ("Normal".to_owned(), "NRM".to_owned()));
+    names.insert(Morpheme::Essence(Essence::Representative), ("Representative".to_owned(), "RPV".to_owned()));
+    names.insert(Morpheme::Function(Function::Stative), ("Stative".to_owned(), "STA".to_owned()));
+    names.insert(Morpheme::Function(Function::Dynamic), ("Dynamic".to_owned(), "DYN".to_owned()));
+    names.insert(Morpheme::Specification(Specification::Basic), ("Basic".to_owned(), "BSC".to_owned()));
+    names.insert(Morpheme::Specification(Specification::Contential), ("Contential".to_owned(), "CTE".to_owned()));
+    names.insert(Morpheme::Specification(Specification::Constitutive), ("Constitutive".to_owned(), "CSV".to_owned()));
+    names.insert(Morpheme::Specification(Specification::Objective), ("Objective".to_owned(), "OBJ".to_owned()));
+    names.insert(Morpheme::Context(Context::Existential), ("Existential".to_owned(), "EXS".to_owned()));
+    names.insert(Morpheme::Context(Context::Functional), ("Functional".to_owned(), "FNC".to_owned()));
+    names.insert(Morpheme::Context(Context::Representational), ("Representational".to_owned(), "RPS".to_owned()));
+    names.insert(Morpheme::Context(Context::Amalgamative), ("Amalgamative".to_owned(), "AMG".to_owned()));
+    names.insert(Morpheme::Party(Party::Speaker), ("Speaker".to_owned(), "I".to_owned()));
+    names.insert(Morpheme::Party(Party::Addressee), ("Addressee".to_owned(), "you".to_owned()));
     names.insert(Morpheme::Party(Party::ThirdParty(Animacy::Animate)),
-                 ("3rd party animate", "he/she/they"));
+                 ("3rd party animate".to_owned(), "he/she/they".to_owned()));
     names.insert(Morpheme::Party(Party::ThirdParty(Animacy::Inanimate)),
-                 ("3rd party inanimate", "it/these things/those things"));
+                 ("3rd party inanimate".to_owned(), "it/these things/those things".to_owned()));
     names.insert(Morpheme::Party(Party::ThirdParty(Animacy::Mixed)),
-                 ("3rd party mixed", "animate+inanimate"));
+                 ("3rd party mixed".to_owned(), "animate+inanimate".to_owned()));
     names.insert(Morpheme::Party(Party::Obviative),
-                 ("Obviative/Resumptive", "3rd party other than most recently referenced"));
+                 ("Obviative/Resumptive".to_owned(), "3rd party other than most recently referenced".to_owned()));
     names.insert(Morpheme::Party(Party::Provisional),
-                 ("Provisional", "whatever"));
-    names.insert(Morpheme::Perspective(Perspective::Monadic), ("Monadic", "M"));
-    names.insert(Morpheme::Perspective(Perspective::Polyadic), ("Polyadic", "P"));
-    names.insert(Morpheme::Perspective(Perspective::Nomic), ("Nomic", "N"));
-    names.insert(Morpheme::Perspective(Perspective::Abstract), ("Abstract", "A"));
-    names.insert(Morpheme::Effect(Effect::Neutral), ("Neutral", "NEUTRAL"));
-    names.insert(Morpheme::Effect(Effect::Beneficial), ("Beneficial", "BENEFICIAL"));
-    names.insert(Morpheme::Effect(Effect::Detrimental), ("Detrimental", "DETRIMENTAL"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Thematic)), ("Thematic", "THM"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Instrumental)), ("Instrumental", "INS"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Absolutive)), ("Absolutive", "ABS"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Stimulative)), ("Stimulative", "STM"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Affective)), ("Affective", "AFF"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Effectuative)), ("Effectuative", "EFF"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Ergative)), ("Ergative", "ERG"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Dative)), ("Dative", "DAT"));
-    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Inducive)), ("Inducive", "IND"));
-    names.insert(Morpheme::Illocution(Illocution::Assertive), ("Assertive", "ASR"));
-    names.insert(Morpheme::Illocution(Illocution::Performative), ("Performative", "PFM"));
-    names.insert(Morpheme::Expectation(Expectation::Cognitive), ("Cognitive", "COG"));
-    names.insert(Morpheme::Expectation(Expectation::Responsive), ("Responsive", "RSP"));
-    names.insert(Morpheme::Expectation(Expectation::Executive), ("Executive", "EXE"));
-    names.insert(Morpheme::Validation(Validation::Observational), ("Observational", "OBS"));
-    names.insert(Morpheme::Validation(Validation::Recollective), ("Recollective", "REC"));
-    names.insert(Morpheme::Validation(Validation::Reportive), ("Reportive", "RPR"));
-    names.insert(Morpheme::Validation(Validation::Purportive), ("Purportive", "PUP"));
-    names.insert(Morpheme::Validation(Validation::Imaginary), ("Imaginary", "IMA"));
-    names.insert(Morpheme::Validation(Validation::Conventional), ("Conventional", "CVN"));
-    names.insert(Morpheme::Validation(Validation::Intuitive), ("Intuitive", "ITU"));
-    names.insert(Morpheme::Validation(Validation::Inferential), ("Inferential", "INF"));
-    names.insert(Morpheme::V, ("Vowel", "(V)"));
-    names.insert(Morpheme::C, ("Consonant", "(C)"));
-    names.insert(Morpheme::W, ("W", "(w)"));
-    names.insert(Morpheme::Y, ("Y", "(y)"));
+                 ("Provisional".to_owned(), "whatever".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Monadic), ("Monadic".to_owned(), "M".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Polyadic), ("Polyadic".to_owned(), "P".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Nomic), ("Nomic".to_owned(), "N".to_owned()));
+    names.insert(Morpheme::Perspective(Perspective::Abstract), ("Abstract".to_owned(), "A".to_owned()));
+    names.insert(Morpheme::Effect(Effect::Neutral), ("Neutral".to_owned(), "NEUTRAL".to_owned()));
+    names.insert(Morpheme::Effect(Effect::Beneficial), ("Beneficial".to_owned(), "BENEFICIAL".to_owned()));
+    names.insert(Morpheme::Effect(Effect::Detrimental), ("Detrimental".to_owned(), "DETRIMENTAL".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Thematic)), ("Thematic".to_owned(), "THM".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Instrumental)), ("Instrumental".to_owned(), "INS".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Absolutive)), ("Absolutive".to_owned(), "ABS".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Stimulative)), ("Stimulative".to_owned(), "STM".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Affective)), ("Affective".to_owned(), "AFF".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Effectuative)), ("Effectuative".to_owned(), "EFF".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Ergative)), ("Ergative".to_owned(), "ERG".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Dative)), ("Dative".to_owned(), "DAT".to_owned()));
+    names.insert(Morpheme::Case(Case::Transrelative(Transrelative::Inducive)), ("Inducive".to_owned(), "IND".to_owned()));
+    names.insert(Morpheme::Illocution(Illocution::Assertive), ("Assertive".to_owned(), "ASR".to_owned()));
+    names.insert(Morpheme::Illocution(Illocution::Performative), ("Performative".to_owned(), "PFM".to_owned()));
+    names.insert(Morpheme::Expectation(Expectation::Cognitive), ("Cognitive".to_owned(), "COG".to_owned()));
+    names.insert(Morpheme::Expectation(Expectation::Responsive), ("Responsive".to_owned(), "RSP".to_owned()));
+    names.insert(Morpheme::Expectation(Expectation::Executive), ("Executive".to_owned(), "EXE".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Observational), ("Observational".to_owned(), "OBS".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Recollective), ("Recollective".to_owned(), "REC".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Reportive), ("Reportive".to_owned(), "RPR".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Purportive), ("Purportive".to_owned(), "PUP".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Imaginary), ("Imaginary".to_owned(), "IMA".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Conventional), ("Conventional.to_owned()".to_owned(), "CVN".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Intuitive), ("Intuitive".to_owned(), "ITU".to_owned()));
+    names.insert(Morpheme::Validation(Validation::Inferential), ("Inferential".to_owned(), "INF".to_owned()));
+    names.insert(Morpheme::V, ("Vowel".to_owned(), "(V)".to_owned()));
+    names.insert(Morpheme::C, ("Consonant".to_owned(), "(C)".to_owned()));
+    names.insert(Morpheme::W, ("W".to_owned(), "(w)".to_owned()));
+    names.insert(Morpheme::Y, ("Y".to_owned(), "(y)".to_owned()));
     names
 }
 
@@ -947,12 +974,15 @@ pub fn get_morphemes_content() -> MorphemeContent {
         , illocutions, expectations, validations, vowel_forms, consonant_forms}
 }
 
-pub fn get_slot6_transformations() -> HashMap<&'static str, &'static str> {
-    let out = [("pp", "mp"), ("tt", "nt"), ("kk", "nk"),
-        ("ll", "pļ"), ("pb", "mb"), ("kg", "ng"), ("çy", "nd"), ("rr", "ns"),
-        ("rř", "nš"), ("řr", "ňs"), ("řř", "ňš"), ("Cgm", "Cx"), ("Cgn", "Cň"),
-        ("ngn", "ňn"), ("Cçx", "Cxw"), ("Cbm", "Cv"), ("Cbn", "Cḑ"), ("ff", "vw"),
-        ("ţţ", "ḑy")]
+pub fn get_slot6_transformations() -> HashMap<String, String> {
+    let out = [("pp".to_owned(), "mp".to_owned()), ("tt".to_owned(), "nt".to_owned())
+        , ("kk".to_owned(), "nk".to_owned()), ("ll".to_owned(), "pļ".to_owned()), ("pb".to_owned(), "mb".to_owned())
+        , ("kg".to_owned(), "ng".to_owned()), ("çy".to_owned(), "nd".to_owned()), ("rr".to_owned(), "ns".to_owned()),
+        ("rř".to_owned(), "nš".to_owned()), ("řr".to_owned(), "ňs".to_owned())
+        , ("řř".to_owned(), "ňš".to_owned()), ("Cgm".to_owned(), "Cx".to_owned()), ("Cgn".to_owned(), "Cň".to_owned()),
+        ("ngn".to_owned(), "ňn".to_owned()), ("Cçx".to_owned(), "Cxw".to_owned())
+        , ("Cbm".to_owned(), "Cv".to_owned()), ("Cbn".to_owned(), "Cḑ".to_owned()), ("ff".to_owned(), "vw".to_owned()),
+        ("ţţ".to_owned(), "ḑy".to_owned())]
         .iter().cloned().collect();
     out
 }

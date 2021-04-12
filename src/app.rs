@@ -1,11 +1,10 @@
 use eframe::{egui, epi};
 use crate::checks::*;
-use stopwatch::Stopwatch;
+use time::{OffsetDateTime};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub struct TemplateApp {
-    // Example stuff:
     current_menu: Menu,
     answer: String,
     probabilities: Vec<f64>,
@@ -14,10 +13,28 @@ pub struct TemplateApp {
     key: Vec<Vec<bool>>,
     choice: Option<usize>,
     stopwatch: Stopwatch,
-    options: Vec<Vec<&'static str>>,
+    options: Vec<Vec<String>>,
+}
+
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+struct Stopwatch {
+    start_time: i128,
+}
+
+impl Stopwatch {
+    fn restart(&mut self) {
+        let now = OffsetDateTime::now_utc();
+        self.start_time = now.unix_timestamp_nanos();
+    }
+
+    fn elapsed(&self) -> i128 {
+        let now = OffsetDateTime::now_utc();
+        now.unix_timestamp_nanos() - self.start_time
+    }
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 enum Menu {
     Main,
     WritingPractice,
@@ -38,7 +55,7 @@ impl Default for TemplateApp {
             data: Data::new(),
             key: Vec::new(),
             choice: None,
-            stopwatch: Stopwatch::new(),
+            stopwatch: Stopwatch {start_time: 0},
             options: Vec::new(),
         }
     }
@@ -62,7 +79,6 @@ impl epi::App for TemplateApp {
     }
 
     fn update(&mut self, ctx: &egui::CtxRef, frame: &mut epi::Frame<'_>) {
-
         // Side panel where you chose practice
         egui::SidePanel::left("side_panel", 200.0).show(ctx, |ui| {
             ui.heading("Practice: ");
@@ -83,9 +99,10 @@ impl epi::App for TemplateApp {
                         self.key.push(vec![true, true]);
 
                         self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["S1", "S2", "S3", "S0"]);
-                        self.options.push(vec!["PRC", "CPT"]);
+                        self.options.push(vec!["(C)".to_owned(), "(w)".to_owned(), "(y)".to_owned()]);
+                        self.options.push(vec!["S1".to_owned(), "S2".to_owned(), "S3".to_owned()
+                                               , "S0".to_owned()]);
+                        self.options.push(vec!["PRC".to_owned(), "CPT".to_owned()]);
                     }
                     if ui.button("Slot4").clicked() {
                         self.current_menu = Menu::Slot4;
@@ -96,10 +113,12 @@ impl epi::App for TemplateApp {
                         self.key.push(vec![true, true, true, true]);
 
                         self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["STA", "DYN"]);
-                        self.options.push(vec!["BSC", "CTE", "CSV", "OBJ"]);
-                        self.options.push(vec!["EXS", "FNC", "RPS", "AMG"]);
+                        self.options.push(vec!["(C)".to_owned(), "(w)".to_owned(), "(y)".to_owned()]);
+                        self.options.push(vec!["STA".to_owned(), "DYN".to_owned()]);
+                        self.options.push(vec!["BSC".to_owned(), "CTE".to_owned(), "CSV".to_owned()
+                                               , "OBJ".to_owned()]);
+                        self.options.push(vec!["EXS".to_owned(), "FNC".to_owned(), "RPS".to_owned()
+                                               , "AMG".to_owned()]);
                     }
                     if ui.button("Slot6").clicked() {
                         self.current_menu = Menu::Slot6;
@@ -113,14 +132,20 @@ impl epi::App for TemplateApp {
                         self.key.push(vec![true, true]);
 
                         self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(V)"]);
-                        self.options.push(vec!["CSL", "ASO", "COA", "VAR"]);
-                        self.options.push(vec!["UNI", "DUP", "MSS", "MSC", "MSF", "MDS", "MDC",
-                        "MDF", "MFS", "MFC", "MFF", "DSS", "DSC", "DSF", "DDS", "DDC", "DDF",
-                        "DFS", "DFC", "DFF"]);
-                        self.options.push(vec!["DEL", "PRX", "ICP", "ATV", "GRA", "DPL"]);
-                        self.options.push(vec!["M", "G", "N", "A"]);
-                        self.options.push(vec!["NRM", "RPV"]);
+                        self.options.push(vec!["(C)".to_owned(), "(V)".to_owned()]);
+                        self.options.push(vec!["CSL".to_owned(), "ASO".to_owned(), "COA".to_owned()
+                                               , "VAR".to_owned()]);
+                        self.options.push(vec!["UNI".to_owned(), "DUP".to_owned(), "MSS".to_owned()
+                                               , "MSC".to_owned(), "MSF".to_owned(), "MDS".to_owned()
+                                               , "MDC".to_owned(),
+                        "MDF".to_owned(), "MFS".to_owned(), "MFC".to_owned(), "MFF".to_owned()
+                                               , "DSS".to_owned(), "DSC".to_owned(), "DSF".to_owned()
+                                               , "DDS".to_owned(), "DDC".to_owned(), "DDF".to_owned(),
+                        "DFS".to_owned(), "DFC".to_owned(), "DFF".to_owned()]);
+                        self.options.push(vec!["DEL".to_owned(), "PRX".to_owned(), "ICP".to_owned()
+                                               , "ATV".to_owned(), "GRA".to_owned(), "DPL".to_owned()]);
+                        self.options.push(vec!["M".to_owned(), "G".to_owned(), "N".to_owned(), "A".to_owned()]);
+                        self.options.push(vec!["NRM".to_owned(), "RPV".to_owned()]);
                     }
                     if ui.button("ReferentialCase").clicked() {
                         self.current_menu = Menu::ReferentialCase;
@@ -131,13 +156,17 @@ impl epi::App for TemplateApp {
                         self.key.push(vec![true, true, true, true, true, true, true, true, true]);
 
                         self.options = Vec::new();
-                        self.options.push(vec!["I", "you", "he/she/they", "it/these things/those things"
-                                               , "animate+inanimate", "3rd party other than most recently referenced"
-                                               , "whatever"]);
-                        self.options.push(vec!["M", "P", "N", "A"]);
-                        self.options.push(vec!["NEUTRAL", "BENEFICIAL", "DETRIMENTAL"]);
-                        self.options.push(vec!["THM", "INS", "ABS", "AFF", "STM", "EFF", "ERG"
-                                               , "DAT", "IND"]);
+                        self.options.push(vec!["I".to_owned(), "you".to_owned(), "he/she/they".to_owned()
+                                               , "it/these things/those things".to_owned()
+                                               , "animate+inanimate".to_owned(), "3rd party other than most recently referenced".to_owned()
+                                               , "whatever".to_owned()]);
+                        self.options.push(vec!["M".to_owned(), "P".to_owned(), "N".to_owned()
+                                               , "A".to_owned()]);
+                        self.options.push(vec!["NEUTRAL".to_owned(), "BENEFICIAL".to_owned(), "DETRIMENTAL".to_owned()]);
+                        self.options.push(vec!["THM".to_owned(), "INS".to_owned(), "ABS".to_owned()
+                                               , "AFF".to_owned(), "STM".to_owned(), "EFF".to_owned()
+                                               , "ERG".to_owned()
+                                               , "DAT".to_owned(), "IND".to_owned()]);
                     }
                     if ui.button("Slot9IEV").clicked() {
                         self.current_menu = Menu::Slot9IEV;
@@ -148,11 +177,13 @@ impl epi::App for TemplateApp {
                         self.key.push(vec![true, true, true, true, true, true, true, true]);
 
                         self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["ASR", "PFM"]);
-                        self.options.push(vec!["COG", "RSP", "EXE"]);
-                        self.options.push(vec!["OBS", "REC", "RPR", "PUP", "IMA", "CVN", "ITU"
-                                               , "INF"]);
+                        self.options.push(vec!["(C)".to_owned(), "(w)".to_owned(), "(y)".to_owned()]);
+                        self.options.push(vec!["ASR".to_owned(), "PFM".to_owned()]);
+                        self.options.push(vec!["COG".to_owned(), "RSP".to_owned(), "EXE".to_owned()]);
+                        self.options.push(vec!["OBS".to_owned(), "REC".to_owned(), "RPR".to_owned()
+                                               , "PUP".to_owned(), "IMA".to_owned(), "CVN".to_owned()
+                                               , "ITU".to_owned()
+                                               , "INF".to_owned()]);
                     }
                 },
                 _ => (),
@@ -200,8 +231,8 @@ impl epi::App for TemplateApp {
             ui.add_space(10.0);
             ui.text_edit_singleline(&mut self.answer);
             if self.answer == self.expected_answer.1 { // guessed? in time or not?
-                let difficulty = 2000; // ms on right answer
-                let successful = if self.stopwatch.elapsed_ms() > difficulty {false} else {true};
+                let difficulty = 2000000000; // ns on right answer
+                let successful = if self.stopwatch.elapsed() > difficulty {false} else {true};
                 modify_probability(&mut self.probabilities, successful, self.choice.unwrap());
                 self.choice = None;
                 self.answer.clear();
@@ -217,7 +248,7 @@ impl epi::App for TemplateApp {
             for y in 0..self.key.len() {
                 ui.horizontal(|ui| {
                     for x in 0..self.key[y].len() {
-                        if ui.checkbox(&mut self.key[y][x], self.options[y][x]).changed() {
+                        if ui.checkbox(&mut self.key[y][x], &self.options[y][x]).changed() {
                             self.choice = None;
                             self.probabilities.clear();
                         };
@@ -232,7 +263,7 @@ impl epi::App for TemplateApp {
                 debug_info.push_str(", ");
             }
             ui.label(debug_info);
-            //ui.label(self.stopwatch.elapsed_ms().to_string());
+            ui.label(self.stopwatch.elapsed().to_string());
         });
 
         if false {
