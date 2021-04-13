@@ -1,6 +1,6 @@
 use eframe::{egui, epi};
 use crate::checks::*;
-use time::{OffsetDateTime};
+use wasm_stopwatch::Stopwatch;
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
@@ -12,25 +12,9 @@ pub struct TemplateApp {
     data: Data,
     key: Vec<Vec<bool>>,
     choice: Option<usize>,
+    #[cfg_attr(feature = "persistence", serde(skip))]
     stopwatch: Stopwatch,
     options: Vec<Vec<String>>,
-}
-
-#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
-struct Stopwatch {
-    start_time: i128,
-}
-
-impl Stopwatch {
-    fn restart(&mut self) {
-        let now = OffsetDateTime::now_utc();
-        self.start_time = now.unix_timestamp_nanos();
-    }
-
-    fn elapsed(&self) -> i128 {
-        let now = OffsetDateTime::now_utc();
-        now.unix_timestamp_nanos() - self.start_time
-    }
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
@@ -55,7 +39,7 @@ impl Default for TemplateApp {
             data: Data::new(),
             key: Vec::new(),
             choice: None,
-            stopwatch: Stopwatch {start_time: 0},
+            stopwatch: Stopwatch::new(),
             options: Vec::new(),
         }
     }
@@ -63,7 +47,7 @@ impl Default for TemplateApp {
 
 impl epi::App for TemplateApp {
     fn name(&self) -> &str {
-        "egui template"
+        "ithkuil learning"
     }
 
     /// Called by the framework to load old app state (if any).
@@ -223,7 +207,7 @@ impl epi::App for TemplateApp {
                     };
                 self.expected_answer = expected_answer;
                 self.choice = Some(choice);
-                self.stopwatch.restart();
+                self.stopwatch.reset();
             }
             ui.heading("Task :");
             ui.add_space(10.0);
@@ -231,8 +215,8 @@ impl epi::App for TemplateApp {
             ui.add_space(10.0);
             ui.text_edit_singleline(&mut self.answer);
             if self.answer == self.expected_answer.1 { // guessed? in time or not?
-                let difficulty = 2000000000; // ns on right answer
-                let successful = if self.stopwatch.elapsed() > difficulty {false} else {true};
+                let difficulty = 2.0; // ns on right answer
+                let successful = if self.stopwatch.get_time() > difficulty {false} else {true};
                 modify_probability(&mut self.probabilities, successful, self.choice.unwrap());
                 self.choice = None;
                 self.answer.clear();
@@ -263,7 +247,7 @@ impl epi::App for TemplateApp {
                 debug_info.push_str(", ");
             }
             ui.label(debug_info);
-            ui.label(self.stopwatch.elapsed().to_string());
+            ui.label(self.stopwatch.get_time().to_string());
         });
 
         if false {

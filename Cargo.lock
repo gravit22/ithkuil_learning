@@ -717,7 +717,7 @@ dependencies = [
  "eframe",
  "rand",
  "serde",
- "time",
+ "wasm-stopwatch",
 ]
 
 [[package]]
@@ -1782,6 +1782,17 @@ name = "wasm-bindgen-shared"
 version = "0.2.73"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d9a543ae66aa233d14bb765ed9af4a33e81b8b58d1584cf1b47ff8cd0b9e4489"
+
+[[package]]
+name = "wasm-stopwatch"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "92f0fd09062f90294dfe22b9114f3a72a11975711b806b48c83e53f2ded821c1"
+dependencies = [
+ "log",
+ "time",
+ "web-sys",
+]
 
 [[package]]
 name = "wayland-client"
