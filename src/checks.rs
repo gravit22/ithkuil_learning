@@ -116,6 +116,12 @@ fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, 
                     } else {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
                     }
+                } else if v.contains('/') {
+                    if expected_answer.is_empty() {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
+                    } else {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
+                    }
                 } else {
                     expected_answer.push_str(v);
                 }
