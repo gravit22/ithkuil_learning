@@ -199,11 +199,12 @@ pub fn generate_slot6(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
                 for extension in 0..data.morphemes_content.expectations.len() {
                     if key[3][extension] == false {continue}
                     for perspective in 0..data.morphemes_content.perspectives.len() {
-                        if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Polyadic) {
-                            continue;
-                        }
+                        let mut perspective = perspective;
                         if perspective == 4 {continue}
                         if key[4][perspective] == false {continue}
+                        if perspective > 0 {
+                            perspective += 1;
+                        }
                         for essence in 0..data.morphemes_content.essences.len() {
                             if key[5][essence] == false {continue}
                             variants.push(vec![
