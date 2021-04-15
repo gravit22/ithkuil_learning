@@ -15,6 +15,7 @@ pub struct TemplateApp {
     #[cfg_attr(feature = "persistence", serde(skip))]
     stopwatch: Stopwatch,
     options: Vec<Vec<String>>,
+    difficulty: f64,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
@@ -41,6 +42,7 @@ impl Default for TemplateApp {
             choice: None,
             stopwatch: Stopwatch::new(),
             options: Vec::new(),
+            difficulty: 2.0,
         }
     }
 }
@@ -209,14 +211,17 @@ impl epi::App for TemplateApp {
                 self.choice = Some(choice);
                 self.stopwatch.reset();
             }
+            ui.horizontal(|ui| {
+                ui.label("Difficulty: ");
+                ui.add(egui::Slider::new(&mut self.difficulty, 1.0..=5.0).text("seconds"));
+            });
             ui.heading("Task :");
             ui.add_space(10.0);
             ui.heading(self.expected_answer.0.clone());
             ui.add_space(10.0);
             ui.text_edit_singleline(&mut self.answer);
             if self.answer == self.expected_answer.1 { // guessed? in time or not?
-                let difficulty = 2.0; // ns on right answer
-                let successful = if self.stopwatch.get_time() > difficulty {false} else {true};
+                let successful = if self.stopwatch.get_time() > self.difficulty {false} else {true};
                 modify_probability(&mut self.probabilities, successful, self.choice.unwrap());
                 self.choice = None;
                 self.answer.clear();

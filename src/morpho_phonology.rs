@@ -872,6 +872,7 @@ pub fn get_morphemes_content() -> MorphemeContent {
     let versions = vec![Morpheme::Version(Version::Processual),
                         Morpheme::Version(Version::Completive)];
     let configurations = vec![Morpheme::Configuration(Configuration::Uniplex),
+                              Morpheme::Configuration(Configuration::Duplex),
                               Morpheme::Configuration(Configuration::MultiplexSimilar(
                                   ConfigurationRelation::Separate)),
                               Morpheme::Configuration(Configuration::MultiplexSimilar(
