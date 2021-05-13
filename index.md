@@ -48,7 +48,8 @@ easier to memorize grammar by finding relations inside it. For example,
   The two next forms repeat the pattern.
 - In series 4 everything rotates 180 degrees and the first four forms 
   are beginning with letters that end four last forms. 
-  In that way, you can search for relations everywhere else. 
+  In that way, you can search for relations everywhere else.
+
 #### Roots and affixes
 For such abstract and alien letter combinations, such found in roots and 
 affixes, it is very useful to wire sounds with familiar sound in English
