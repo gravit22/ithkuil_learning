@@ -4,3 +4,7 @@ author: Gravit22
 description: Site about learning Ithkuil.
 
 theme: jekyll-theme-leap-day
+
+header_pages:
+  - about.md
+  - portfolio.md

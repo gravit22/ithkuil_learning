@@ -1,4 +1,4 @@
-# Guide for learning Itkuil
+# Guide for learning Ithkuil
 
 ## Learning grammar with special app
 A dedicated app for practicing the grammar of the language was created.
