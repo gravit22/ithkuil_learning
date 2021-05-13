@@ -17,7 +17,7 @@ the certain threshold you will complete the training.
 Many more features are planned to be included. 
 Plans for features:
 - [x] separate grammar practice of different slots.
-- [ ] adding optional slots.
+    - [ ] adding optional slots.
 - [ ] practice of pronunciation(writing correct IPA symbols corresponding 
   to spelled grammar)
 - [ ] practicing of scope(translating Ithkuil to English and vise-versa 
