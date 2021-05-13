@@ -1,6 +1,6 @@
-# Guide for learning Itkuil
+# Guide for learning Itkuil #
 
-## Learning grammar with special app
+## Learning grammar with special app ##
 A dedicated app for practicing the grammar of the language was created.
  Since Ithkuil has much more grammatical units than any other language
   it is useful to practice it separately. 
@@ -26,13 +26,13 @@ A dedicated app for practicing the grammar of the language was created.
  translating them)
  - [ ] adding native script when it is ready
  
- ## Memorising roots, affixes and grammar
+ ## Memorising roots, affixes and grammar ##
  
- ### Find relations
+ ### Find relations ###
  For simple memorization of roots and affixes, I recommend using mnemonics,
   which mean actually using any kind of visual rational wiring of two or
   more objects, concepts, etc. 
- #### Grammar
+ #### Grammar ####
  Thanks to updating the language to became more regular, it became much
   easier to memorize grammar by finding relations inside it. For example,
   
@@ -50,7 +50,7 @@ A dedicated app for practicing the grammar of the language was created.
   - In series 4 everything rotates 180 degrees and the first four forms
    are beginning with letters that end four last forms.
   In that way, you can search for relations everywhere else. 
- #### Roots and affixes
+ #### Roots and affixes ####
  For such abstract and alien letter combinations, such found in roots and 
   affixes, it is very useful to wire sounds with familiar sound in English
   or any other language, imagining a combination of two mental images.
@@ -61,7 +61,7 @@ A dedicated app for practicing the grammar of the language was created.
      you can remind yourself of the rest with not so many problems. And
       images can be anything, they just need to have some visual, audial,
        or any other relations(similarities). 
- ### Repetition(using Anki or any other flashcard software)
+ ### Repetition(using Anki or any other flashcard software) ###
  It is generally good practice to repeat the root or affix more often at
   the beginning of memorization. Pause between steps should be increased
    gradually. So steps(in minutes) like 1 3 10 30 300, can be a good choice,
