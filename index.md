@@ -25,7 +25,9 @@ A dedicated app for practicing the grammar of the language was created.
  - [ ] practice of cases(where you give cases to English words without
  translating them)
  - [ ] adding native script when it is ready
- testing
+
+ # testing
+
  ## Memorising roots, affixes and grammar
  
  ### Find relations
