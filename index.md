@@ -90,5 +90,4 @@ A dedicated app for practicing the grammar of the language was created.
   but with using tools demonstrated here you probably will be able to find
   optimal solution.
  
- app:
- [app](/docs/index.html)
+# [Link to the app](/docs/index.html) #
