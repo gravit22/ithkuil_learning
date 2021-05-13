@@ -11,9 +11,10 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 eframe = "0.11.0" # Gives us egui, epi and web+native backends
+getrandom = { version = "0.2", features = ["js"] }
 
 serde = { version = "1", features = ["derive"], optional = true} # add optional = true if want persistance
-rand = "0.7"
+rand = "0.8"
 wasm-stopwatch = "0.2"
 
 [features]

@@ -46,6 +46,9 @@ pub fn modify_probability(probabilities: &mut Vec<f64>, successful: bool, choice
 
 fn probability_choice(probabilities: &Vec<f64>) -> usize {
     let mut max = (0, 0.0);
+    probabilities.iter().enumerate();
+    rand::thread_rng().gen_bool(0.2);
+
     for (i, v) in probabilities.iter().enumerate() {
         if rand::thread_rng().gen_bool(*v) {
             return i;
@@ -54,6 +57,7 @@ fn probability_choice(probabilities: &Vec<f64>) -> usize {
             max = (i, *v);
         }
     }
+
     max.0
 }
 

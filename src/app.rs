@@ -215,6 +215,7 @@ impl epi::App for TemplateApp {
                 ui.label("Difficulty: ");
                 ui.add(egui::Slider::new(&mut self.difficulty, 1.0..=5.0).text("seconds"));
             });
+
             ui.heading("Task :");
             ui.add_space(10.0);
             ui.heading(self.expected_answer.0.clone());
