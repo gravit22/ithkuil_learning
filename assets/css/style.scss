@@ -1,7 +1,7 @@
 ---
 ---
 
-@import 'jekyll-theme-leap-day';
+@import "";
 
 #banner {
   z-index: 100;
@@ -41,7 +41,7 @@
 
   .fork {
     position:fixed;
-    left:20%;
+    left:50%;
     margin-left:-325px;
     padding: 10px 12px;
     margin-top: 6px;
@@ -53,3 +53,40 @@
   .downloads {
     float: right;
     margin:0 45px 0 0;
+
+    span {
+      float:left;
+      line-height:52px;
+      font-size:90%;
+      color:#9d7f0d;
+      text-transform:uppercase;
+      text-shadow:rgba(#fff, 0.2) 0 1px 0;
+    }
+  }
+
+  ul {
+    list-style:none;
+    height:40px;
+    padding:0;
+    float: left;
+    margin-left:10px;
+
+    li {
+      display:inline;
+
+      a.button {
+        background-color: #FFE788;
+      }
+    }
+  }
+
+  #logo {
+    position:absolute;
+    height: 36px;
+    width: 36px;
+    right:7px;
+    top:7px;
+    display: block;
+    background: url(../images/octocat-logo.svg);
+  }
+}
