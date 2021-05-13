@@ -4,4 +4,4 @@ Learn Ithkuil
 
 [Tips and tricks to learn the language](https://gravit22.github.io/ithkuil_learning/)
 
-# [Link to the app](/docs/index.html) #
+# [Link to the app](https://gravit22.github.io/ithkuil_learning/docs/index.html) #
