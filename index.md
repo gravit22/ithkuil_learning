@@ -2,35 +2,33 @@
 
 ## Learning grammar with special app
 A dedicated app for practicing the grammar of the language was created.
- Since Ithkuil has much more grammatical units than any other language
-  it is useful to practice it separately. 
+Since Ithkuil has much more grammatical units than any other language
+it is useful to practice it separately. 
  
- In this app, you can choose what slot to practice as well as morphemes
-  to include in training. Currently, there are 2 seconds(will be adjustable
-   manually) for the right answer, if it is in
- time then the probability of the current combination of morphemes will
-  be shown less
- likely, and the opposite is true if the answer was given not in time. If
- probabilities of all combinations included in training will be less
- the certain threshold you will complete the training.
+In this app, you can choose what slot to practice as well as morphemes
+to include in training. Currently, there are 2 seconds(will be adjustable
+manually) for the right answer, if it is in
+time then the probability of the current combination of morphemes will
+be shown less
+likely, and the opposite is true if the answer was given not in time. If
+probabilities of all combinations included in training will be less
+the certain threshold you will complete the training.
  
- Many more features are planned to be included. 
- Plans for features:
- - [x] separate grammar practice of different slots.
-    - [ ] adding optional slots.
- - [ ] practice of pronunciation(writing correct IPA symbols corresponding
- to spelled grammar)
- - [ ] practicing of scope(translating Ithkuil to English and vise-versa 
- in drag and drop format)
- - [ ] practice of cases(where you give cases to English words without
- translating them)
- - [ ] adding native script when it is ready
+Many more features are planned to be included. 
+Plans for features:
+- [x] separate grammar practice of different slots.
+- [ ] adding optional slots.
+- [ ] practice of pronunciation(writing correct IPA symbols corresponding 
+  to spelled grammar)
+- [ ] practicing of scope(translating Ithkuil to English and vise-versa 
+  in drag and drop format)
+- [ ] practice of cases(where you give cases to English words without 
+  translating them)
+- [ ] adding native script when it is ready
 
- # testing
-
- ## Memorising roots, affixes and grammar
+## Memorising roots, affixes and grammar
  
- ### Find relations
+### Find relations
  For simple memorization of roots and affixes, I recommend using mnemonics,
   which mean actually using any kind of visual rational wiring of two or
   more objects, concepts, etc. 
