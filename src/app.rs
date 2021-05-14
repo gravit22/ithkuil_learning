@@ -9,6 +9,7 @@ pub struct TemplateApp {
     answer: String,
     probabilities: Vec<f64>,
     expected_answer: (String, String),
+    #[cfg_attr(feature = "persistence", serde(skip))]
     data: Data,
     key: Vec<Vec<bool>>,
     choice: Option<usize>,
@@ -213,7 +214,7 @@ impl epi::App for TemplateApp {
             }
             ui.horizontal(|ui| {
                 ui.label("Difficulty: ");
-                ui.add(egui::Slider::new(&mut self.difficulty, 1.0..=5.0).text("seconds"));
+                ui.add(egui::Slider::new(&mut self.difficulty, 1.0..=5.0).text("seconds(for right answer)"));
             });
 
             ui.heading("Task :");

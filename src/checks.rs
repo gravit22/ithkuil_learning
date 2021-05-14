@@ -3,14 +3,14 @@ use std::collections::HashMap;
 use rand;
 use rand::Rng;
 
-#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+//#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub struct Data {
-    pub morphemes: HashMap<Vec<Morpheme>, String>,
-    pub morphemes_names: HashMap<Morpheme, (String, String)>,
+    pub morphemes: HashMap<Vec<Morpheme>, &'static str>,
+    pub morphemes_names: HashMap<Morpheme, (&'static str, &'static str)>,
     pub morphemes_content: MorphemeContent,
-    pub consonants: String,
-    pub vowels: String,
-    pub slot6_transformations: HashMap<String, String>,
+    pub consonants: &'static str,
+    pub vowels: &'static str,
+    pub slot6_transformations: HashMap<&'static str, &'static str>,
 }
 
 impl Data {
@@ -19,8 +19,8 @@ impl Data {
             morphemes: get_morphemes(),
             morphemes_names: get_morphemes_names(),
             morphemes_content: get_morphemes_content(),
-            consonants: "pbmfvwtdnţḑszcżršžčjçykgxňř'hļl".to_owned(),
-            vowels: "ieäöïaüëuo".to_owned(),
+            consonants: "pbmfvwtdnţḑszcżršžčjçykgxňř'hļl",
+            vowels: "ieäöïaüëuo",
             slot6_transformations: get_slot6_transformations(),
         }
     }
@@ -321,7 +321,7 @@ pub fn transform_slot6(string: &mut String, data: &Data) {
             // testing combinations involving V or C
             for key in data.slot6_transformations.keys() {
                 if key.contains("V") {
-                    let mut from = String::from(key);
+                    let mut from = String::from(*key);
                     from.remove(key.find("V").unwrap());
                     if from == s.trim() {
                         let mut b = f_idx - 1..f_idx;
@@ -334,7 +334,7 @@ pub fn transform_slot6(string: &mut String, data: &Data) {
                         }
                     }
                 } else if key.contains("C") {
-                    let mut from = String::from(key);
+                    let mut from = String::from(*key);
                     from.remove(key.find("C").unwrap());
                     if from == s.trim() {
                         let mut b = s_idx..s_idx + 1;
