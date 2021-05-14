@@ -225,6 +225,10 @@ header {
     background-color: #FFE788;
   }
 
+  .fork2 {
+    margin-left:-355px;
+  }
+
   .downloads {
     float: right;
     margin:0 45px 0 0;
@@ -379,6 +383,9 @@ footer {
 
     .fork {
     }
+    .fork2 {
+
+    }
 
     #logo {
       margin-right: 15px;
@@ -435,6 +442,13 @@ footer {
     left:20px;
 
       }
+    .fork2 {
+      float: left;
+      display: inline-block;
+      margin-left: 0px;
+    position:fixed;
+    left:20px;
+    }
   }
 
   section {
