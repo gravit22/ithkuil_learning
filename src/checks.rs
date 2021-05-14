@@ -3,7 +3,6 @@ use std::collections::HashMap;
 use rand;
 use rand::Rng;
 
-//#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
 pub struct Data {
     pub morphemes: HashMap<Vec<Morpheme>, &'static str>,
     pub morphemes_names: HashMap<Morpheme, (&'static str, &'static str)>,
