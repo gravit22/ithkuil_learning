@@ -40,8 +40,8 @@
   }
 
   .fork {
-    position:relative;
-    left:86.5%;
+    position:fixed;
+    left:50%;  //86.5 for relative
     margin-left:-325px;
     padding: 10px 12px;
     margin-top: 6px;
