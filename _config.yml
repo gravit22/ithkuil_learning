@@ -5,4 +5,4 @@ description: Site about learning Ithkuil.
 
 theme: jekyll-theme-leap-day
 
-#show_downloads: true
+show_downloads: true
