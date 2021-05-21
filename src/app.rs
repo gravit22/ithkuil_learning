@@ -97,13 +97,13 @@ impl epi::App for TemplateApp {
                         let out = slot6_key_options();
                         self.key = out.0;
                         self.options = out.1;
-                    }
+                    }/*
                     if ui.button("(Slot8)").clicked() {
                         self.current_menu = Menu::Slot8;
                         let out = slot8_key_options();
                         self.key = out.0;
                         self.options = out.1;
-                    }
+                    }*/
                     if ui.button("ReferentialCase").clicked() {
                         self.current_menu = Menu::ReferentialCase;
                         let out = referential_key_options();
