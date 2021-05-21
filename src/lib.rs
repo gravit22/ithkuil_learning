@@ -3,8 +3,9 @@
 #![warn(clippy::all, rust_2018_idioms)]
 
 mod app;
-mod checks;
-mod morpho_phonology;
+pub mod checks;
+pub mod morpho_phonology;
+pub mod variants;
 pub use app::TemplateApp;
 
 // ----------------------------------------------------------------------------

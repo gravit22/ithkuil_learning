@@ -20,6 +20,13 @@ pub struct MorphemeContent {
     pub validations: Vec<Morpheme>,
     pub consonant_forms: Vec<Morpheme>,
     pub vowel_forms: Vec<Morpheme>,
+    pub valences: Vec<Morpheme>,
+    pub phases: Vec<Morpheme>,
+    pub effects8: Vec<Morpheme>,
+    pub levels: Vec<Morpheme>,
+    pub aspects: Vec<Morpheme>,
+    pub moods: Vec<Morpheme>,
+    pub case_scopes: Vec<Morpheme>,
 }
 
 pub enum Formative {
@@ -59,17 +66,17 @@ pub enum Morpheme {
     Affiliation(Affiliation),
     Perspective(Perspective),
     Essence(Essence),
-    Valence,
-    Mood,
-    Aspect,
-    Phase,
-    Level,
+    Valence(Valence),
+    Mood(Mood),
+    Aspect(Aspect),
+    Phase(Phase),
+    Level(Level),
     Case(Case),
     Illocution(Illocution),
     Expectation(Expectation),
     Validation(Validation),
     Bias,
-    CaseScope,
+    CaseScope(CaseScope),
     Relation(Relation),
     Party(Party),
     Effect(Effect),
@@ -176,6 +183,111 @@ pub enum Perspective {
 pub enum Essence {
     Normal,
     Representative,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum Valence {
+    Monoactive,
+    Parallel,
+    Corollary,
+    Reciprocal,
+    Complementary,
+    Duplicative,
+    Demonstrative,
+    Contingent,
+    Participative,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum Phase {
+    Punctual,
+    Iterative,
+    Repetitive,
+    Intermittent,
+    Recurrent,
+    Frequentative,
+    Fragmentative,
+    Vacillative,
+    Fluctuative,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum Level {
+    Minimal,
+    Subequative,
+    Inferior,
+    Deficient,
+    Equative,
+    Surpassive,
+    Superlative,
+    Superequative,
+    Maximal,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum Aspect {
+    Retrospective,
+    Prospective,
+    Habitual,
+    Progressive,
+    Imminent,
+    Precessive,
+    Regulative,
+    Summative,
+    Anticipatory,
+    Resumptive,
+    Cessative,
+    Pausal,
+    Regressive,
+    Preclusive,
+    Continuative,
+    Incessative,
+    Experiential,
+    Interruptive,
+    Preemptive,
+    Climactic,
+    Dilatory,
+    Temporary,
+    Expenditive,
+    Limitative,
+    Expeditive,
+    Protractive,
+    Preparatory,
+    Disclusive,
+    Conclusive,
+    Culminative,
+    Intermediative,
+    Tardative,
+    Transitional,
+    Intercommutative,
+    Motive,
+    Sequential,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum Mood {
+    Factual,
+    Subjunctive,
+    Assumptive,
+    Speculative,
+    Counterfactive,
+    Hypothetical,
+}
+
+#[derive(PartialEq, Eq, Hash, Clone)]
+#[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
+pub enum CaseScope {
+    Natural,
+    Antecedent,
+    Subaltern,
+    Qualifier,
+    Precedent,
+    Successive,
 }
 
 #[derive(PartialEq, Eq, Hash, Clone)]
@@ -358,6 +470,15 @@ pub enum Effect {
     Neutral,
     Beneficial,
     Detrimental,
+    Beneficial1,
+    Beneficial2,
+    Beneficial3,
+    BeneficialSelf,
+    Detrimental1,
+    Detrimental2,
+    Detrimental3,
+    DetrimentalSelf,
+    Unknown,
 }
 
 pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
@@ -742,6 +863,92 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     hashmap.insert(vec![Morpheme::Illocution(Illocution::Assertive),
                         Morpheme::Expectation(Expectation::Executive),
                         Morpheme::Validation(Validation::Inferential)], "uá/iâ");
+    //  Valence or Phase or Level or Effect or Aspect
+    hashmap.insert(vec![Morpheme::Valence(Valence::Monoactive)], "a");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Parallel)], "ä");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Corollary)], "e");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Reciprocal)], "i");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Complementary)], "ëi");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Duplicative)], "ö");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Demonstrative)], "o");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Contingent)], "ü");
+    hashmap.insert(vec![Morpheme::Valence(Valence::Participative)], "u");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Punctual)], "ai");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Iterative)], "au");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Repetitive)], "ei");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Intermittent)], "eu");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Recurrent)], "ëu");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Frequentative)], "ou");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Fragmentative)], "oi");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Vacillative)], "iu");
+    hashmap.insert(vec![Morpheme::Phase(Phase::Fluctuative)], "ui");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Beneficial1)], "ia/uä");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Beneficial2)], "ie/uë");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Beneficial3)], "io/üä");
+    hashmap.insert(vec![Morpheme::Effect(Effect::BeneficialSelf)], "iö/üë");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Unknown)], "eë");
+    hashmap.insert(vec![Morpheme::Effect(Effect::DetrimentalSelf)], "uö/öë");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Detrimental3)], "uo/öä");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Detrimental2)], "ue/ië");
+    hashmap.insert(vec![Morpheme::Effect(Effect::Detrimental1)], "ua/iä");
+    hashmap.insert(vec![Morpheme::Level(Level::Minimal)], "ao");
+    hashmap.insert(vec![Morpheme::Level(Level::Subequative)], "aö");
+    hashmap.insert(vec![Morpheme::Level(Level::Inferior)], "eo");
+    hashmap.insert(vec![Morpheme::Level(Level::Deficient)], "eö");
+    hashmap.insert(vec![Morpheme::Level(Level::Equative)], "oë");
+    hashmap.insert(vec![Morpheme::Level(Level::Surpassive)], "öe");
+    hashmap.insert(vec![Morpheme::Level(Level::Superlative)], "oe");
+    hashmap.insert(vec![Morpheme::Level(Level::Superequative)], "öa");
+    hashmap.insert(vec![Morpheme::Level(Level::Maximal)], "oa");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Retrospective)], "a");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Prospective)], "ä");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Habitual)], "e");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Progressive)], "i");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Imminent)], "ëi");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Precessive)], "ö");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Regulative)], "o");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Summative)], "ü");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Anticipatory)], "u");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Resumptive)], "ai");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Cessative)], "au");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Pausal)], "ei");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Regressive)], "eu");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Preclusive)], "ëu");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Continuative)], "ou");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Incessative)], "oi");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Experiential)], "iu");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Interruptive)], "ui");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Preemptive)], "ia/uä");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Climactic)], "ie/uë");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Dilatory)], "io/üä");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Temporary)], "iö/üë");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Expenditive)], "eë");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Limitative)], "uö/öë");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Expeditive)], "uo/öä");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Protractive)], "ue/ië");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Preparatory)], "ua/iä");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Disclusive)], "ao");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Conclusive)], "aö");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Culminative)], "eo");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Intermediative)], "eö");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Tardative)], "oë");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Transitional)], "öe");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Intercommutative)], "oe");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Motive)], "öa");
+    hashmap.insert(vec![Morpheme::Aspect(Aspect::Sequential)], "oa");
+    // Mood or Case-Scope
+    hashmap.insert(vec![Morpheme::Mood(Mood::Factual)], "h/w/y");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Subjunctive)], "hl/hw");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Assumptive)], "hr/hlw");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Speculative)], "hm/hly");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Counterfactive)], "hn/hnw");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Hypothetical)], "hň/hny");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Natural)], "h/w/y");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Antecedent)], "hl/hw");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Subaltern)], "hr/hlw");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Qualifier)], "hm/hly");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Precedent)], "hn/hnw");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Successive)], "hň/hny");
     hashmap
 }
 
@@ -862,6 +1069,92 @@ pub fn get_morphemes_names() -> HashMap<Morpheme, (&'static str, &'static str)> 
     names.insert(Morpheme::C, ("Consonant", "(C)"));
     names.insert(Morpheme::W, ("W", "(w)"));
     names.insert(Morpheme::Y, ("Y", "(y)"));
+    //  Valence or Phase or Level or Effect or Aspect
+    names.insert(Morpheme::Valence(Valence::Monoactive), ("Monoactive", "MNO"));
+    names.insert(Morpheme::Valence(Valence::Parallel), ("Parallel", "PRL"));
+    names.insert(Morpheme::Valence(Valence::Corollary), ("Corollary", "CRO"));
+    names.insert(Morpheme::Valence(Valence::Reciprocal), ("Reciprocal", "RCP"));
+    names.insert(Morpheme::Valence(Valence::Complementary), ("Complementary", "CPL"));
+    names.insert(Morpheme::Valence(Valence::Duplicative), ("Duplicative", "DUP"));
+    names.insert(Morpheme::Valence(Valence::Demonstrative), ("Demonstrative", "DEM"));
+    names.insert(Morpheme::Valence(Valence::Contingent), ("Contingent", "CNG"));
+    names.insert(Morpheme::Valence(Valence::Participative), ("Participative", "PTI"));
+    names.insert(Morpheme::Phase(Phase::Punctual), ("Punctual", "PCT"));
+    names.insert(Morpheme::Phase(Phase::Iterative), ("Iterative", "ITR"));
+    names.insert(Morpheme::Phase(Phase::Repetitive), ("Repetitive", "REP"));
+    names.insert(Morpheme::Phase(Phase::Intermittent), ("Intermittent", "ITM"));
+    names.insert(Morpheme::Phase(Phase::Recurrent), ("Recurrent", "RCT"));
+    names.insert(Morpheme::Phase(Phase::Frequentative), ("Frequentative", "FRE"));
+    names.insert(Morpheme::Phase(Phase::Fragmentative), ("Fragmentative", "FRG"));
+    names.insert(Morpheme::Phase(Phase::Vacillative), ("Vacillative", "VAC"));
+    names.insert(Morpheme::Phase(Phase::Fluctuative), ("Fluctuative", "FLC"));
+    names.insert(Morpheme::Effect(Effect::Beneficial1), ("Beneficial First", "1:BEN"));
+    names.insert(Morpheme::Effect(Effect::Beneficial2), ("Beneficial Second", "2:BEN"));
+    names.insert(Morpheme::Effect(Effect::Beneficial3), ("Beneficial Third", "3:BEN"));
+    names.insert(Morpheme::Effect(Effect::BeneficialSelf), ("Beneficial Self", "SLF:BEN"));
+    names.insert(Morpheme::Effect(Effect::Unknown), ("Unknown", "UNK"));
+    names.insert(Morpheme::Effect(Effect::DetrimentalSelf), ("Detrimental Self", "SLF:DET"));
+    names.insert(Morpheme::Effect(Effect::Detrimental3), ("Detrimental Third", "3:DET"));
+    names.insert(Morpheme::Effect(Effect::Detrimental2), ("Detrimental Second", "2:DET"));
+    names.insert(Morpheme::Effect(Effect::Detrimental1), ("Detrimental First", "1:DET"));
+    names.insert(Morpheme::Level(Level::Minimal), ("Minimal", "MIN"));
+    names.insert(Morpheme::Level(Level::Subequative), ("Subequative", "SBE"));
+    names.insert(Morpheme::Level(Level::Inferior), ("Inferior", "IFR"));
+    names.insert(Morpheme::Level(Level::Deficient), ("Deficient", "DFT"));
+    names.insert(Morpheme::Level(Level::Equative), ("Equative", "EQU"));
+    names.insert(Morpheme::Level(Level::Surpassive), ("Surpassive", "SUR"));
+    names.insert(Morpheme::Level(Level::Superlative), ("Superlative", "SPL"));
+    names.insert(Morpheme::Level(Level::Superequative), ("Superequative", "SPQ"));
+    names.insert(Morpheme::Level(Level::Maximal), ("Maximal", "MAX"));
+    names.insert(Morpheme::Aspect(Aspect::Retrospective), ("Retrospective", "RTR"));
+    names.insert(Morpheme::Aspect(Aspect::Prospective), ("Prospective", "PRS"));
+    names.insert(Morpheme::Aspect(Aspect::Habitual), ("Habitual", "HAB"));
+    names.insert(Morpheme::Aspect(Aspect::Progressive), ("Progressive", "PRG"));
+    names.insert(Morpheme::Aspect(Aspect::Imminent), ("Imminent", "IMM"));
+    names.insert(Morpheme::Aspect(Aspect::Precessive), ("Precessive", "PCS"));
+    names.insert(Morpheme::Aspect(Aspect::Regulative), ("Regulative", "REG"));
+    names.insert(Morpheme::Aspect(Aspect::Summative), ("Summative", "SMM"));
+    names.insert(Morpheme::Aspect(Aspect::Anticipatory), ("Anticipatory", "ATP"));
+    names.insert(Morpheme::Aspect(Aspect::Resumptive), ("Resumptive", "RSM"));
+    names.insert(Morpheme::Aspect(Aspect::Cessative), ("Cessative", "CSS"));
+    names.insert(Morpheme::Aspect(Aspect::Pausal), ("Pausal", "PAU"));
+    names.insert(Morpheme::Aspect(Aspect::Regressive), ("Regressive", "RGR"));
+    names.insert(Morpheme::Aspect(Aspect::Preclusive), ("Preclusive", "PCL"));
+    names.insert(Morpheme::Aspect(Aspect::Continuative), ("Continuative", "CNT"));
+    names.insert(Morpheme::Aspect(Aspect::Incessative), ("Incessative", "ICS"));
+    names.insert(Morpheme::Aspect(Aspect::Experiential), ("Experiential", "EXP"));
+    names.insert(Morpheme::Aspect(Aspect::Interruptive), ("Interruptive", "IRP"));
+    names.insert(Morpheme::Aspect(Aspect::Preemptive), ("Preemptive", "PMP"));
+    names.insert(Morpheme::Aspect(Aspect::Climactic), ("Climactic", "CLM"));
+    names.insert(Morpheme::Aspect(Aspect::Dilatory), ("Dilatory", "DLT"));
+    names.insert(Morpheme::Aspect(Aspect::Temporary), ("Temporary", "TMP"));
+    names.insert(Morpheme::Aspect(Aspect::Expenditive), ("Expenditive", "XPD"));
+    names.insert(Morpheme::Aspect(Aspect::Limitative), ("Limitative", "LIM"));
+    names.insert(Morpheme::Aspect(Aspect::Expeditive), ("Expeditive", "EPD"));
+    names.insert(Morpheme::Aspect(Aspect::Protractive), ("Protractive", "PTC"));
+    names.insert(Morpheme::Aspect(Aspect::Preparatory), ("Preparatory", "PPR"));
+    names.insert(Morpheme::Aspect(Aspect::Disclusive), ("Disclusive", "DCL"));
+    names.insert(Morpheme::Aspect(Aspect::Conclusive), ("Conclusive", "CCL"));
+    names.insert(Morpheme::Aspect(Aspect::Culminative), ("Culminative", "CUL"));
+    names.insert(Morpheme::Aspect(Aspect::Intermediative), ("Intermediative", "IMD"));
+    names.insert(Morpheme::Aspect(Aspect::Tardative), ("Tardative", "TRD"));
+    names.insert(Morpheme::Aspect(Aspect::Transitional), ("Transitional", "TNS"));
+    names.insert(Morpheme::Aspect(Aspect::Intercommutative), ("Intercommutative", "ITC"));
+    names.insert(Morpheme::Aspect(Aspect::Motive), ("Motive", "MTV"));
+    names.insert(Morpheme::Aspect(Aspect::Sequential), ("Sequential", "SQN"));
+    // Mood or Case-Scope
+    names.insert(Morpheme::Mood(Mood::Factual), ("Factual", "FAC"));
+    names.insert(Morpheme::Mood(Mood::Subjunctive), ("Subjunctive", "SUB"));
+    names.insert(Morpheme::Mood(Mood::Assumptive), ("Assumptive", "ASM"));
+    names.insert(Morpheme::Mood(Mood::Speculative), ("Speculative", "SPC"));
+    names.insert(Morpheme::Mood(Mood::Counterfactive), ("Counterfactive", "COU"));
+    names.insert(Morpheme::Mood(Mood::Hypothetical), ("Hypothetical", "HYP"));
+    names.insert(Morpheme::CaseScope(CaseScope::Natural), ("Natural", "CCN"));
+    names.insert(Morpheme::CaseScope(CaseScope::Antecedent), ("Antecedent", "CCA"));
+    names.insert(Morpheme::CaseScope(CaseScope::Subaltern), ("Subaltern", "CCS"));
+    names.insert(Morpheme::CaseScope(CaseScope::Qualifier), ("Qualifier", "CCQ"));
+    names.insert(Morpheme::CaseScope(CaseScope::Precedent), ("Precedent", "CCP"));
+    names.insert(Morpheme::CaseScope(CaseScope::Successive), ("Successive", "CCV"));
     names
 }
 
@@ -970,9 +1263,94 @@ pub fn get_morphemes_content() -> MorphemeContent {
     Morpheme::Validation(Validation::Inferential)];
     let vowel_forms = vec![Morpheme::C, Morpheme::W, Morpheme::Y];
     let consonant_forms = vec![Morpheme::C, Morpheme::V];
+    let valences = vec![Morpheme::Valence(Valence::Monoactive),
+                        Morpheme::Valence(Valence::Parallel),
+                        Morpheme::Valence(Valence::Corollary),
+                        Morpheme::Valence(Valence::Reciprocal),
+                        Morpheme::Valence(Valence::Complementary),
+                        Morpheme::Valence(Valence::Duplicative),
+                        Morpheme::Valence(Valence::Demonstrative),
+                        Morpheme::Valence(Valence::Contingent),
+                        Morpheme::Valence(Valence::Participative)];
+    let phases = vec![Morpheme::Phase(Phase::Punctual),
+    Morpheme::Phase(Phase::Iterative),
+    Morpheme::Phase(Phase::Repetitive),
+    Morpheme::Phase(Phase::Intermittent),
+    Morpheme::Phase(Phase::Recurrent),
+    Morpheme::Phase(Phase::Frequentative),
+    Morpheme::Phase(Phase::Fragmentative),
+    Morpheme::Phase(Phase::Vacillative),
+    Morpheme::Phase(Phase::Fluctuative)];
+    let effects8 = vec![Morpheme::Effect(Effect::Beneficial1),
+    Morpheme::Effect(Effect::Beneficial2),
+    Morpheme::Effect(Effect::Beneficial3),
+    Morpheme::Effect(Effect::BeneficialSelf),
+    Morpheme::Effect(Effect::Unknown),
+    Morpheme::Effect(Effect::DetrimentalSelf),
+    Morpheme::Effect(Effect::Detrimental3),
+    Morpheme::Effect(Effect::Detrimental2),
+    Morpheme::Effect(Effect::Detrimental1)];
+    let levels = vec![Morpheme::Level(Level::Minimal),
+    Morpheme::Level(Level::Subequative),
+    Morpheme::Level(Level::Inferior),
+    Morpheme::Level(Level::Deficient),
+    Morpheme::Level(Level::Equative),
+    Morpheme::Level(Level::Surpassive),
+    Morpheme::Level(Level::Superlative),
+    Morpheme::Level(Level::Superequative),
+    Morpheme::Level(Level::Maximal)];
+    let aspects = vec![Morpheme::Aspect(Aspect::Retrospective),
+    Morpheme::Aspect(Aspect::Prospective),
+    Morpheme::Aspect(Aspect::Habitual),
+    Morpheme::Aspect(Aspect::Progressive),
+    Morpheme::Aspect(Aspect::Imminent),
+    Morpheme::Aspect(Aspect::Precessive),
+    Morpheme::Aspect(Aspect::Regulative),
+    Morpheme::Aspect(Aspect::Summative),
+    Morpheme::Aspect(Aspect::Anticipatory),
+    Morpheme::Aspect(Aspect::Resumptive),
+    Morpheme::Aspect(Aspect::Cessative),
+    Morpheme::Aspect(Aspect::Pausal),
+    Morpheme::Aspect(Aspect::Regressive),
+    Morpheme::Aspect(Aspect::Preclusive),
+    Morpheme::Aspect(Aspect::Continuative),
+    Morpheme::Aspect(Aspect::Incessative),
+    Morpheme::Aspect(Aspect::Experiential),
+    Morpheme::Aspect(Aspect::Interruptive),
+    Morpheme::Aspect(Aspect::Preemptive),
+    Morpheme::Aspect(Aspect::Climactic),
+    Morpheme::Aspect(Aspect::Dilatory),
+    Morpheme::Aspect(Aspect::Temporary),
+    Morpheme::Aspect(Aspect::Expenditive),
+    Morpheme::Aspect(Aspect::Limitative),
+    Morpheme::Aspect(Aspect::Expeditive),
+    Morpheme::Aspect(Aspect::Protractive),
+    Morpheme::Aspect(Aspect::Preparatory),
+    Morpheme::Aspect(Aspect::Disclusive),
+    Morpheme::Aspect(Aspect::Conclusive),
+    Morpheme::Aspect(Aspect::Culminative),
+    Morpheme::Aspect(Aspect::Intermediative),
+    Morpheme::Aspect(Aspect::Tardative),
+    Morpheme::Aspect(Aspect::Transitional),
+    Morpheme::Aspect(Aspect::Intercommutative),
+    Morpheme::Aspect(Aspect::Motive),
+    Morpheme::Aspect(Aspect::Sequential)];
+    let moods = vec![Morpheme::Mood(Mood::Factual),
+    Morpheme::Mood(Mood::Subjunctive),
+    Morpheme::Mood(Mood::Assumptive),
+    Morpheme::Mood(Mood::Speculative),
+    Morpheme::Mood(Mood::Counterfactive),
+    Morpheme::Mood(Mood::Hypothetical)];
+    let case_scopes = vec![Morpheme::CaseScope(CaseScope::Natural),
+    Morpheme::CaseScope(CaseScope::Antecedent),
+    Morpheme::CaseScope(CaseScope::Subaltern),
+    Morpheme::CaseScope(CaseScope::Qualifier),
+    Morpheme::CaseScope(CaseScope::Precedent),
+    Morpheme::CaseScope(CaseScope::Successive)];
     MorphemeContent {stems, versions, configurations, extensions, affiliations
         , perspectives, essences, functions, specifications, contexts, parties, effects, cases
-        , illocutions, expectations, validations, vowel_forms, consonant_forms}
+        , illocutions, expectations, validations, vowel_forms, consonant_forms, valences, phases,
+    effects8, levels, aspects, moods, case_scopes}
 }
 
 pub fn get_slot6_transformations() -> HashMap<&'static str, &'static str> {

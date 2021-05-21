@@ -1,6 +1,7 @@
-use eframe::{egui, epi};
 use crate::checks::*;
+use eframe::{egui, epi};
 use wasm_stopwatch::Stopwatch;
+use crate::variants::{slot2_key_options, slot4_key_options, slot6_key_options, slot8_key_options, referential_key_options, slot9iev_key_options};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
@@ -28,6 +29,7 @@ enum Menu {
     Slot2,
     Slot4,
     Slot6,
+    Slot8,
     ReferentialCase,
     Slot9IEV,
 }
@@ -75,105 +77,46 @@ impl epi::App for TemplateApp {
                     if ui.button("Writing practice").clicked() {
                         self.current_menu = Menu::WritingPractice;
                     } else if ui.button("Reading practice").clicked() {
-
                     }
-                },
+                }
                 Menu::WritingPractice => {
                     if ui.button("Slot2").clicked() {
                         self.current_menu = Menu::Slot2;
-                        self.key = Vec::new();
-                        self.key.push(vec![true, true, true]);
-                        self.key.push(vec![true, true, true, true]);
-                        self.key.push(vec![true, true]);
-
-                        self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["S1", "S2", "S3"
-                                               , "S0"]);
-                        self.options.push(vec!["PRC", "CPT"]);
+                        let out = slot2_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
                     }
                     if ui.button("Slot4").clicked() {
                         self.current_menu = Menu::Slot4;
-                        self.key = Vec::new();
-                        self.key.push(vec![true, true, true]);
-                        self.key.push(vec![true, true]);
-                        self.key.push(vec![true, true, true, true]);
-                        self.key.push(vec![true, true, true, true]);
-
-                        self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["STA", "DYN"]);
-                        self.options.push(vec!["BSC", "CTE", "CSV"
-                                               , "OBJ"]);
-                        self.options.push(vec!["EXS", "FNC", "RPS"
-                                               , "AMG"]);
+                        let out = slot4_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
                     }
                     if ui.button("Slot6").clicked() {
                         self.current_menu = Menu::Slot6;
-                        self.key = Vec::new();
-                        self.key.push(vec![true, true]);
-                        self.key.push(vec![true, true, true, true]);
-                        self.key.push(vec![true, true, true, true, true, true, true, true, true, true
-                                           , true, true, true, true, true, true, true, true, true, true]);
-                        self.key.push(vec![true, true, true, true, true, true]);
-                        self.key.push(vec![true, true, true, true]);
-                        self.key.push(vec![true, true]);
-
-                        self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(V)"]);
-                        self.options.push(vec!["CSL", "ASO", "COA"
-                                               , "VAR"]);
-                        self.options.push(vec!["UNI", "DUP", "MSS"
-                                               , "MSC", "MSF", "MDS"
-                                               , "MDC",
-                        "MDF", "MFS", "MFC", "MFF"
-                                               , "DSS", "DSC", "DSF"
-                                               , "DDS", "DDC", "DDF",
-                        "DFS", "DFC", "DFF"]);
-                        self.options.push(vec!["DEL", "PRX", "ICP"
-                                               , "ATV", "GRA", "DPL"]);
-                        self.options.push(vec!["M", "G", "N", "A"]);
-                        self.options.push(vec!["NRM", "RPV"]);
+                        let out = slot6_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
+                    }
+                    if ui.button("(Slot8)").clicked() {
+                        self.current_menu = Menu::Slot8;
+                        let out = slot8_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
                     }
                     if ui.button("ReferentialCase").clicked() {
                         self.current_menu = Menu::ReferentialCase;
-                        self.key = Vec::new();
-                        self.key.push(vec![true, true, true, true, true, true, true]);
-                        self.key.push(vec![true, true, true, true]);
-                        self.key.push(vec![true, true, true]);
-                        self.key.push(vec![true, true, true, true, true, true, true, true, true]);
-
-                        self.options = Vec::new();
-                        self.options.push(vec!["I", "you", "he/she/they"
-                                               , "it/these things/those things"
-                                               , "animate+inanimate", "3rd party other than most recently referenced"
-                                               , "whatever"]);
-                        self.options.push(vec!["M", "P", "N"
-                                               , "A"]);
-                        self.options.push(vec!["NEUTRAL", "BENEFICIAL", "DETRIMENTAL"]);
-                        self.options.push(vec!["THM", "INS", "ABS"
-                                               , "AFF", "STM", "EFF"
-                                               , "ERG"
-                                               , "DAT", "IND"]);
+                        let out = referential_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
                     }
                     if ui.button("Slot9IEV").clicked() {
                         self.current_menu = Menu::Slot9IEV;
-                        self.key = Vec::new();
-                        self.key.push(vec![true, true, true]);
-                        self.key.push(vec![true, true]);
-                        self.key.push(vec![true, true, true]);
-                        self.key.push(vec![true, true, true, true, true, true, true, true]);
-
-                        self.options = Vec::new();
-                        self.options.push(vec!["(C)", "(w)", "(y)"]);
-                        self.options.push(vec!["ASR", "PFM"]);
-                        self.options.push(vec!["COG", "RSP", "EXE"]);
-                        self.options.push(vec!["OBS", "REC", "RPR"
-                                               , "PUP", "IMA", "CVN"
-                                               , "ITU"
-                                               , "INF"]);
+                        let out = slot9iev_key_options();
+                        self.key = out.0;
+                        self.options = out.1;
                     }
-                },
+                }
                 _ => (),
             }
         });
@@ -195,27 +138,44 @@ impl epi::App for TemplateApp {
             });
         });
 
-        if self.key.is_empty() || self.current_menu == Menu::Main { // if there is no parameters choosen then stop here
-            return
+        if self.key.is_empty() || self.current_menu == Menu::Main {
+            // if there is no parameters choosen then stop here
+            return;
         }
 
         egui::CentralPanel::default().show(ctx, |ui| {
             if self.choice == None {
                 let (expected_answer, choice) = match self.current_menu {
-                    Menu::Slot2 => generate_slot2(&self.data, &mut self.probabilities, &mut self.key),
-                    Menu::Slot4 => generate_slot4(&self.data, &mut self.probabilities, &mut self.key),
-                    Menu::Slot6 => generate_slot6(&self.data, &mut self.probabilities, &mut self.key),
-                    Menu::ReferentialCase => generate_referentials(&self.data, &mut self.probabilities, &mut self.key),
-                    Menu::Slot9IEV => generate_slot9iev(&self.data, &mut self.probabilities, &mut self.key),
+                    Menu::Slot2 => {
+                        generate_slot2(&self.data, &mut self.probabilities, &mut self.key)
+                    }
+                    Menu::Slot4 => {
+                        generate_slot4(&self.data, &mut self.probabilities, &mut self.key)
+                    }
+                    Menu::Slot6 => {
+                        generate_slot6(&self.data, &mut self.probabilities, &mut self.key)
+                    }
+                    Menu::ReferentialCase => {
+                        generate_referentials(&self.data, &mut self.probabilities, &mut self.key)
+                    }
+                    Menu::Slot8 => {
+                        generate_slot8(&self.data, &mut self.probabilities, &mut self.key)
+                    }
+                    Menu::Slot9IEV => {
+                        generate_slot9iev(&self.data, &mut self.probabilities, &mut self.key)
+                    }
                     _ => panic!("should not happen"),
-                    };
+                };
                 self.expected_answer = expected_answer;
                 self.choice = Some(choice);
                 self.stopwatch.reset();
             }
             ui.horizontal(|ui| {
                 ui.label("Difficulty: ");
-                ui.add(egui::Slider::new(&mut self.difficulty, 1.0..=5.0).text("seconds(for the right answer)"));
+                ui.add(
+                    egui::Slider::new(&mut self.difficulty, 1.0..=5.0)
+                        .text("seconds(for the right answer)"),
+                );
             });
 
             ui.heading("Task :");
@@ -223,8 +183,13 @@ impl epi::App for TemplateApp {
             ui.heading(self.expected_answer.0.clone());
             ui.add_space(10.0);
             ui.text_edit_singleline(&mut self.answer);
-            if self.answer == self.expected_answer.1 { // guessed? in time or not?
-                let successful = if self.stopwatch.get_time() > self.difficulty {false} else {true};
+            if self.answer == self.expected_answer.1 {
+                // guessed? in time or not?
+                let successful = if self.stopwatch.get_time() > self.difficulty {
+                    false
+                } else {
+                    true
+                };
                 modify_probability(&mut self.probabilities, successful, self.choice.unwrap());
                 self.choice = None;
                 self.answer.clear();
@@ -240,7 +205,10 @@ impl epi::App for TemplateApp {
             for y in 0..self.key.len() {
                 ui.horizontal(|ui| {
                     for x in 0..self.key[y].len() {
-                        if ui.checkbox(&mut self.key[y][x], self.options[y][x]).changed() {
+                        if ui
+                            .checkbox(&mut self.key[y][x], self.options[y][x])
+                            .changed()
+                        {
                             self.choice = None;
                             self.probabilities.clear();
                         };

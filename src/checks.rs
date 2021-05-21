@@ -2,6 +2,7 @@ use crate::morpho_phonology::*;
 use std::collections::HashMap;
 use rand;
 use rand::Rng;
+use crate::variants::*;
 
 pub struct Data {
     pub morphemes: HashMap<Vec<Morpheme>, &'static str>,
@@ -60,7 +61,7 @@ fn probability_choice(probabilities: &Vec<f64>) -> usize {
     max.0
 }
 
-fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, String) {
+pub fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, String) {
     let start = if from_beginning {0} else {1};
     let mut string = String::new();
     let mut expected_answer = String::new();
@@ -105,7 +106,7 @@ fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, 
                     == vec![Morpheme::Perspective(Perspective::Abstract), Morpheme::Essence(Essence::Representative)])
                     && expected_answer.chars().count() >= 2 {
                     let chars = expected_answer.chars().collect::<Vec<char>>();
-                    let last_char = chars[chars.len()];
+                    let last_char = chars[chars.len() - 1];
                     let second_to_last_char = chars[chars.len() - 1];
                     if "tkp".contains(last_char) && (data.consonants.contains(second_to_last_char)
                         || variant[0] == Morpheme::C) {
@@ -140,20 +141,7 @@ fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (String, 
 }
 
 pub fn generate_slot2(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
-    let mut variants = Vec::new();
-    for vowel_form in 0..data.morphemes_content.vowel_forms.len() {
-        if key[0][vowel_form] == false {continue}
-        for stem in 0..data.morphemes_content.stems.len() {
-            if key[1][stem] == false {continue}
-            for version in 0..data.morphemes_content.versions.len() {
-                if key[2][version] == false {continue}
-                variants.push(vec![
-                    data.morphemes_content.vowel_forms[vowel_form].clone()
-                    , data.morphemes_content.stems[stem].clone()
-                    , data.morphemes_content.versions[version].clone()]);
-            }
-        }
-    }
+    let mut variants = slot2_variants(data, key);
     if probabilities.is_empty() {
         for _ in 0..variants.len() {
             probabilities.push(0.3);
@@ -164,24 +152,7 @@ pub fn generate_slot2(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
 }
 
 pub fn generate_slot4(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
-    let mut variants = Vec::new();
-    for vowel_form in 0..data.morphemes_content.vowel_forms.len() {
-        if key[0][vowel_form] == false {continue}
-        for function in 0..data.morphemes_content.functions.len() {
-            if key[1][function] == false {continue}
-            for specification in 0..data.morphemes_content.specifications.len() {
-                if key[2][specification] == false {continue}
-                for context in 0..data.morphemes_content.contexts.len() {
-                    if key[3][context] == false {continue}
-                    variants.push(vec![
-                        data.morphemes_content.vowel_forms[vowel_form].clone()
-                        , data.morphemes_content.functions[function].clone()
-                        , data.morphemes_content.specifications[specification].clone()
-                        , data.morphemes_content.contexts[context].clone()]);
-                }
-            }
-        }
-    }
+    let mut variants = slot4_variants(data, key);
     if probabilities.is_empty() {
         for _ in 0..variants.len() {
             probabilities.push(0.3);
@@ -192,37 +163,7 @@ pub fn generate_slot4(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
 }
 
 pub fn generate_slot6(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
-    let mut variants = Vec::new();
-    for consonant_form in 0..data.morphemes_content.consonant_forms.len() {
-        if key[0][consonant_form] == false {continue}
-        for affiliation in 0..data.morphemes_content.affiliations.len() {
-            if key[1][affiliation] == false {continue}
-            for configuration in 0..data.morphemes_content.configurations.len() {
-                if key[2][configuration] == false {continue}
-                for extension in 0..data.morphemes_content.expectations.len() {
-                    if key[3][extension] == false {continue}
-                    for perspective in 0..data.morphemes_content.perspectives.len() {
-                        let mut perspective = perspective;
-                        if perspective == 4 {continue}
-                        if key[4][perspective] == false {continue}
-                        if perspective > 0 {
-                            perspective += 1;
-                        }
-                        for essence in 0..data.morphemes_content.essences.len() {
-                            if key[5][essence] == false {continue}
-                            variants.push(vec![
-                                data.morphemes_content.consonant_forms[consonant_form].clone()
-                                , data.morphemes_content.affiliations[affiliation].clone()
-                                , data.morphemes_content.configurations[configuration].clone()
-                                , data.morphemes_content.extensions[extension].clone()
-                                , data.morphemes_content.perspectives[perspective].clone()
-                                , data.morphemes_content.essences[essence].clone()]);
-                        }
-                    }
-                }
-            }
-        }
-    }
+    let mut variants = slot6_variants(data, key);
     if probabilities.is_empty() {
         for _ in 0..variants.len() {
             probabilities.push(0.3);
@@ -233,40 +174,7 @@ pub fn generate_slot6(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<b
 }
 
 pub fn generate_referentials(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
-    let mut variants = Vec::new();
-    for party in 0..data.morphemes_content.parties.len() {
-        if key[0][party] == false {continue}
-        for perspective in 0..data.morphemes_content.perspectives.len() {
-            if perspective == 4 {continue}
-            if key[1][perspective] == false {continue}
-            if data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Nomic)
-                || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Abstract)
-                || data.morphemes_content.perspectives[perspective] == Morpheme::Perspective(Perspective::Agglomerative) {
-                continue;
-            }
-            if (data.morphemes_content.parties[party] == Morpheme::Party(Party::Provisional)
-                || data.morphemes_content.parties[party] == Morpheme::Party(Party::Obviative)
-                || data.morphemes_content.parties[party] == Morpheme::Party(Party::ThirdParty(Animacy::Mixed)))
-                && data.morphemes_content.perspectives[perspective] != Morpheme::Perspective(Perspective::Monadic) {
-                continue;
-            }
-            if data.morphemes_content.parties[party] == Morpheme::Party(Party::Speaker)
-                && data.morphemes_content.perspectives[perspective] != Morpheme::Perspective(Perspective::Monadic) {
-                continue;
-            }
-            for effect in 0..data.morphemes_content.effects.len() {
-                if key[2][effect] == false {continue}
-                for case in 0..data.morphemes_content.cases.len() {
-                    if key[3][case] == false {continue}
-                    variants.push(vec![
-                        data.morphemes_content.parties[party].clone()
-                        , data.morphemes_content.perspectives[perspective].clone()
-                        , data.morphemes_content.effects[effect].clone()
-                        , data.morphemes_content.cases[case].clone()]);
-                }
-            }
-        }
-    }
+    let mut variants = referential_variants(data, key);
     if probabilities.is_empty() {
         for _ in 0..variants.len() {
             probabilities.push(0.3);
@@ -276,29 +184,19 @@ pub fn generate_referentials(data: &Data, probabilities: &mut Vec<f64>, key: &Ve
     (task(&variants[choice], data, true), choice)
 }
 
-pub fn generate_slot9iev(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
-    let mut variants = Vec::new();
-    for vowel_form in 0..data.morphemes_content.vowel_forms.len() {
-        if key[0][vowel_form] == false {continue}
-        for illocution in 0..data.morphemes_content.illocutions.len() {
-            if key[1][illocution] == false {continue}
-            for expectation in 0..data.morphemes_content.expectations.len() {
-                if key[2][expectation] == false {continue}
-                for validation in 0..data.morphemes_content.validations.len() {
-                    if key[3][validation] == false {continue}
-                    if data.morphemes_content.illocutions[illocution] == Morpheme::Illocution(Illocution::Performative)
-                        && data.morphemes_content.validations[validation] != Morpheme::Validation(Validation::Observational) {
-                        continue;
-                    }
-                    variants.push(vec![
-                        data.morphemes_content.vowel_forms[vowel_form].clone()
-                        , data.morphemes_content.illocutions[illocution].clone()
-                        , data.morphemes_content.expectations[expectation].clone()
-                        , data.morphemes_content.validations[validation].clone()]);
-                }
-            }
+pub fn generate_slot8(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
+    let mut variants = slot8_variants(data, key);
+    if probabilities.is_empty() {
+        for _ in 0..variants.len() {
+            probabilities.push(0.3);
         }
     }
+    let choice = probability_choice(&probabilities);
+    (task(&variants[choice], data, false), choice)
+}
+
+pub fn generate_slot9iev(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Vec<bool>>) -> ((String, String), usize) {
+    let mut variants = slot9iev_variants(data, key);
     if probabilities.is_empty() {
         for _ in 0..variants.len() {
             probabilities.push(0.3);
@@ -309,10 +207,12 @@ pub fn generate_slot9iev(data: &Data, probabilities: &mut Vec<f64>, key: &Vec<Ve
 }
 
 pub fn transform_slot6(string: &mut String, data: &Data) {
+    // convert string into bites for easy iterations of chars(or easy replacement)
     let to_bytes = string.clone();
     let bytes = to_bytes.as_bytes();
     for (f_idx, &item1) in bytes.iter().enumerate() {
         for (s_idx, &item2) in bytes.iter().enumerate() {
+            // if beginning is after or equal to end then there is nothing to do
             if s_idx <= f_idx {
                 continue;
             }
@@ -337,12 +237,12 @@ pub fn transform_slot6(string: &mut String, data: &Data) {
                     from.remove(key.find("C").unwrap());
                     if from == s.trim() {
                         let mut b = s_idx..s_idx + 1;
-                        if bytes[s_idx + 1].is_ascii_alphabetic() == false {
+                        if bytes[s_idx].is_ascii_alphabetic() == false {
                             b = s_idx..s_idx + 1;
                         }
                         if data.consonants.contains(&string[b]) { // here is the problem
                             string.replace_range(f_idx..s_idx + 1, &data.slot6_transformations
-                                .get(key).unwrap()[..key.len() - 2]);
+                                .get(key).unwrap()[1..key.len() - 1]);
                         }
                     }
                 }
