@@ -69,16 +69,9 @@ pub fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (Stri
         string.push_str(&data.morphemes_names.get(&morpheme).unwrap().1);
         string.push_str(" + ");
     }
-    let mut e_a = false;
     for beginning in start..variant.len() {
         for end in beginning..variant.len() {
             if let Some(v) = data.morphemes.get(&variant[beginning..end+1]) {
-                if variant.len() > 3 {
-                    if variant[2] != Morpheme::Extension(Extension::Delimitive)
-                        && variant[3] != Morpheme::Affiliation(Affiliation::Consolidative) {
-                        e_a = true;
-                    }
-                }
                 // vowel forms
                 if v.contains('/') && v.chars().next().unwrap() == 'i' {
                     if variant[0] == Morpheme::Y {
@@ -93,18 +86,28 @@ pub fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (Stri
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     }
                 }
+                // slot 8 forms
+                else if is_slot8(&variant[1]) != None && v.contains('/') {
+                    let out = is_slot8(&variant[1]).unwrap();
+                    if out == "pat 1" {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
+                    } else {
+                        expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
+                    }
+                }
                 // slot 6 forms
-                else if v.contains('/') && beginning == 1 {
+                else if v.contains('/') && beginning == 1 { // choose whether affiliation is single or not
                     if is_end_empty(&variant) {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[0]);
                     } else {
                         expected_answer.push_str(v.split('/').collect::<Vec<&str>>()[1]);
                     }
-                } else if (variant[beginning..end+1]
+                } else if (variant[beginning..=end]
                 == vec![Morpheme::Perspective(Perspective::Nomic), Morpheme::Essence(Essence::Representative)]
-                    || variant[beginning..end+1]
+                    || variant[beginning..=end]
                     == vec![Morpheme::Perspective(Perspective::Abstract), Morpheme::Essence(Essence::Representative)])
                     && expected_answer.chars().count() >= 2 {
+                    // choose from 2 alternative combined forms of perspective and essence
                     let chars = expected_answer.chars().collect::<Vec<char>>();
                     let last_char = chars[chars.len() - 1];
                     let second_to_last_char = chars[chars.len() - 1];
@@ -133,7 +136,6 @@ pub fn task(variant: &Vec<Morpheme>, data: &Data, from_beginning: bool) -> (Stri
         }
     }
     transform_slot6(&mut expected_answer, data);
-    //println!("{}", expected_answer);
     string.pop();
     string.pop();
     string.pop();
@@ -273,4 +275,13 @@ fn is_end_empty(variant: &Vec<Morpheme>) -> bool {
         return true
     }
     false
+}
+
+fn is_slot8(variant: &Morpheme) -> Option<&str> {
+    match variant {
+        Morpheme::Valence(_) | Morpheme::Phase(_) |
+        Morpheme::Effect(_) | Morpheme::Level(_) => Some("pat 1"),
+        Morpheme::Aspect(_) => Some("pat 2"),
+        _ => None,
+    }
 }

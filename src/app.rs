@@ -1,7 +1,10 @@
 use crate::checks::*;
+use crate::variants::{
+    referential_key_options, slot2_key_options, slot4_key_options, slot6_key_options,
+    slot8_key_options, slot9iev_key_options,
+};
 use eframe::{egui, epi};
 use wasm_stopwatch::Stopwatch;
-use crate::variants::{slot2_key_options, slot4_key_options, slot6_key_options, slot8_key_options, referential_key_options, slot9iev_key_options};
 
 /// We derive Deserialize/Serialize so we can persist app state on shutdown.
 #[cfg_attr(feature = "persistence", derive(serde::Deserialize, serde::Serialize))]
@@ -97,13 +100,13 @@ impl epi::App for TemplateApp {
                         let out = slot6_key_options();
                         self.key = out.0;
                         self.options = out.1;
-                    }/*
+                    }
                     if ui.button("(Slot8)").clicked() {
                         self.current_menu = Menu::Slot8;
                         let out = slot8_key_options();
                         self.key = out.0;
                         self.options = out.1;
-                    }*/
+                    }
                     if ui.button("ReferentialCase").clicked() {
                         self.current_menu = Menu::ReferentialCase;
                         let out = referential_key_options();
@@ -203,7 +206,7 @@ impl epi::App for TemplateApp {
 
             // write buttons to chose parts of categories to include
             for y in 0..self.key.len() {
-                ui.horizontal(|ui| {
+                ui.horizontal_wrapped(|ui| {
                     for x in 0..self.key[y].len() {
                         if ui
                             .checkbox(&mut self.key[y][x], self.options[y][x])
@@ -214,6 +217,7 @@ impl epi::App for TemplateApp {
                         };
                     }
                 });
+                ui.add_space(10.0);
             }
 
             ui.add_space(100.0);

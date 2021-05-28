@@ -937,13 +937,13 @@ pub fn get_morphemes() -> HashMap<Vec<Morpheme>, &'static str> {
     hashmap.insert(vec![Morpheme::Aspect(Aspect::Motive)], "öa");
     hashmap.insert(vec![Morpheme::Aspect(Aspect::Sequential)], "oa");
     // Mood or Case-Scope
-    hashmap.insert(vec![Morpheme::Mood(Mood::Factual)], "h/w/y");
+    hashmap.insert(vec![Morpheme::Mood(Mood::Factual)], "h/w");
     hashmap.insert(vec![Morpheme::Mood(Mood::Subjunctive)], "hl/hw");
     hashmap.insert(vec![Morpheme::Mood(Mood::Assumptive)], "hr/hlw");
     hashmap.insert(vec![Morpheme::Mood(Mood::Speculative)], "hm/hly");
     hashmap.insert(vec![Morpheme::Mood(Mood::Counterfactive)], "hn/hnw");
     hashmap.insert(vec![Morpheme::Mood(Mood::Hypothetical)], "hň/hny");
-    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Natural)], "h/w/y");
+    hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Natural)], "h/w");
     hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Antecedent)], "hl/hw");
     hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Subaltern)], "hr/hlw");
     hashmap.insert(vec![Morpheme::CaseScope(CaseScope::Qualifier)], "hm/hly");

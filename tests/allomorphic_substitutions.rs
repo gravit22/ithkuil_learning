@@ -1,6 +1,6 @@
 use ithkuil_learning;
 
 #[test]
-fn slot6() {
+fn substitution() {
     assert_eq!(true, true);
 }

@@ -1,6 +1,6 @@
 [package]
 name = "ithkuil_learning"
-version = "0.2.0"
+version = "0.2.4"
 authors = ["Mikhaylo Havrilets <emikhail.gavrilec@gmail.com>"]
 edition = "2018"
 

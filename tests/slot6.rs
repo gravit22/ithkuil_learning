@@ -1,7 +1,6 @@
 use ithkuil_learning::checks::*;
 use ithkuil_learning::variants::*;
 use ithkuil_learning::morpho_phonology::*;
-use ithkuil_learning::morpho_phonology::Configuration::MultiplexSimilar;
 
 mod common;
 
